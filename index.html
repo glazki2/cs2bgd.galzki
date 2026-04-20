@@ -706,11 +706,20 @@
     border-radius: 10px;
     margin-bottom: 8px;
     overflow: hidden;
-    transition: border-color 0.25s;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
     animation: fadeUp 0.4s ease both;
   }
 
-  .accordion.open { border-color: rgba(208,32,192,0.25); }
+  .accordion:hover {
+    border-color: rgba(208,32,192,0.15);
+    transform: translateX(3px);
+  }
+
+  .accordion.open {
+    border-color: rgba(208,32,192,0.4);
+    box-shadow: 0 0 20px rgba(208,32,192,0.08), inset 0 0 0 1px rgba(208,32,192,0.1);
+    transform: translateX(3px);
+  }
 
   .accordion-header {
     display: flex;
@@ -755,16 +764,23 @@
   .accordion.open .acc-arrow { transform: rotate(180deg); color: var(--accent); }
 
   .accordion-body {
-    display: none;
-    padding: 0 18px 18px 50px;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 18px 0 50px;
     font-size: 0.835rem;
     color: var(--muted);
     line-height: 1.8;
-    border-top: 1px solid var(--border);
-    padding-top: 14px;
+    border-top: 0px solid var(--border);
+    transition: max-height 0.38s cubic-bezier(0.16,1,0.3,1), padding 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
   }
 
-  .accordion.open .accordion-body { display: block; }
+  .accordion.open .accordion-body {
+    max-height: 800px;
+    padding: 14px 18px 18px 50px;
+    border-top: 1px solid var(--border);
+    opacity: 1;
+  }
 
   .accordion-body ul { list-style: none; padding: 0; margin: 7px 0 0; }
 
@@ -1521,7 +1537,20 @@
   }
 
   function toggleAcc(header) {
-    header.parentElement.classList.toggle('open');
+    const clicked = header.parentElement;
+    const isOpen = clicked.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.accordion.open').forEach(acc => {
+      acc.classList.remove('open');
+    });
+    // If wasn't open, open it
+    if (!isOpen) {
+      clicked.classList.add('open');
+      // Animate scroll into view smoothly
+      setTimeout(() => {
+        clicked.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 50);
+    }
   }
 
   function switchTab(id, btn) {
@@ -1536,7 +1565,7 @@
   }
 
   const downloadLinks = {
-    ShellBag: 'https://yoomachecker.ru/downloads/shellbag_analyzer_cleaner.exe',
+    ShellBag: 'https://github.com/glazki2/cs2bgd.galzki/releases/download/v1.0.0/shellbag_analyzer_cleaner.exe',
     Everything: 'https://www.voidtools.com/Everything-1.5.0.1404a.x64.zip',
     LastActivityView: 'https://www.nirsoft.net/utils/lastactivityview.zip',
     BrowsingHistoryView: 'https://www.nirsoft.net/utils/browsinghistoryview.zip',
@@ -1589,3 +1618,4 @@
 </script>
 </body>
 </html>
+
