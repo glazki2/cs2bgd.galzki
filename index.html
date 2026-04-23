@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BGD Checker \u2014 CS2BGD31.RU</title>
+<title>BGD Checker — CS2BGD31.RU</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -592,4 +592,1256 @@
     font-size: 0.75rem;
     color: #8888aa;
     line-height: 1.85;
-    background: rgba(0,0,0,0.28
+    background: rgba(0,0,0,0.28);
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.04);
+    word-break: break-all;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 20px; right: 22px;
+    padding: 7px 18px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 0 14px var(--accent-glow);
+    letter-spacing: 0.02em;
+  }
+
+  .copy-btn:hover { background: var(--accent3); transform: scale(1.03); }
+  .copy-btn:active { transform: scale(0.97); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .guide-hero {
+    text-align: center;
+    padding: 64px 32px 44px;
+    position: relative;
+  }
+
+  .guide-hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 200px;
+    background: radial-gradient(ellipse, rgba(208,32,192,0.09) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .guide-hero h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .guide-hero h1 span { color: var(--accent); }
+
+  .guide-hero p {
+    color: var(--muted);
+    font-size: 0.875rem;
+    animation: fadeUp 0.6s ease 0.1s both;
+    position: relative; z-index: 1;
+  }
+
+  .guide-section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  .accordion {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .accordion:hover {
+    border-color: rgba(208,32,192,0.15);
+    transform: translateX(3px);
+  }
+
+  .accordion.open {
+    border-color: rgba(208,32,192,0.4);
+    box-shadow: 0 0 20px rgba(208,32,192,0.08), inset 0 0 0 1px rgba(208,32,192,0.1);
+    transform: translateX(3px);
+  }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 18px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .accordion-header:hover { background: rgba(255,255,255,0.02); }
+
+  .acc-num {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--accent);
+    width: 20px; height: 20px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(208,32,192,0.3);
+    border-radius: 3px;
+    background: rgba(208,32,192,0.06);
+    flex-shrink: 0;
+  }
+
+  .acc-title {
+    flex: 1;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .acc-arrow {
+    font-size: 0.65rem;
+    color: var(--muted);
+    transition: transform 0.3s ease, color 0.2s;
+  }
+
+  .accordion.open .acc-arrow { transform: rotate(180deg); color: var(--accent); }
+
+  .accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 18px 0 50px;
+    font-size: 0.835rem;
+    color: var(--muted);
+    line-height: 1.8;
+    border-top: 0px solid var(--border);
+    transition: max-height 0.38s cubic-bezier(0.16,1,0.3,1), padding 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+
+  .accordion.open .accordion-body {
+    max-height: 800px;
+    padding: 14px 18px 18px 50px;
+    border-top: 1px solid var(--border);
+    opacity: 1;
+  }
+
+  .accordion-body ul { list-style: none; padding: 0; margin: 7px 0 0; }
+
+  .accordion-body ul li {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .accordion-body ul li::before {
+    content: '›';
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .accordion-body strong { color: var(--text); }
+  .accordion-body .step { margin-bottom: 4px; color: var(--text); font-weight: 500; }
+
+  .guide-cta { text-align: center; padding-bottom: 60px; }
+
+  .guide-cta button {
+    padding: 12px 40px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 22px var(--accent-glow);
+    transition: all 0.25s;
+    letter-spacing: 0.02em;
+  }
+
+  .guide-cta button:hover { background: var(--accent3); transform: translateY(-2px); }
+
+  footer {
+    text-align: center;
+    padding: 28px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  .section-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(208,32,192,0.25), transparent);
+  }
+
+  @media (max-width: 800px) {
+    .programs-grid { grid-template-columns: 1fr 1fr; }
+    nav { padding: 0 20px; }
+    .hero-content { padding: 0 20px; }
+    .hero-stats { left: 20px; gap: 24px; }
+    .hero-visual { width: 45%; opacity: 0.5; }
+  }
+
+  @media (max-width: 560px) {
+    .programs-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .hero-stats { position: static; padding: 32px 20px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo" onclick="showPage('home',this);return false;">
+    <svg class="logo-hex" viewBox="0 0 32 32" fill="none">
+      <defs>
+        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#e040d0"/>
+          <stop offset="100%" stop-color="#9010a0"/>
+        </linearGradient>
+      </defs>
+      <polygon points="16,1.5 29,8.5 29,23.5 16,30.5 3,23.5 3,8.5" fill="none" stroke="url(#lg)" stroke-width="1.4"/>
+      <circle cx="16" cy="16" r="9" fill="#120818" stroke="url(#lg)" stroke-width="1"/>
+      <text x="16" y="20" text-anchor="middle" font-family="Rajdhani,sans-serif" font-weight="700" font-size="7" fill="#fff" letter-spacing="0.3">BGD</text>
+    </svg>
+    <span class="logo-text">CS2<span>BGD</span>31.RU</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active" id="nav-home" onclick="showPage('home',this);return false;">
+      <svg class="nav-ico" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L1 7v8h5v-4h4v4h5V7L8 1z"/></svg>
+      Главная
+    </a></li>
+    <li><a href="#" id="nav-main" onclick="showPage('main',this);return false;">
+      <svg class="nav-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/></svg>
+      Программы
+    </a></li>
+    <li><a href="#" id="nav-guide" onclick="showPage('guide',this);return false;">
+      <svg class="nav-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M5 5h6M5 8h6M5 11h4"/></svg>
+      Руководство
+    </a></li>
+  </ul>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home">
+  <div class="hero-section">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag">CS2BGD31.RU — Anti-Cheat Tools</div>
+      <h1 class="hero-title">
+        Проверка<br>
+        на читы<br>
+        <span class="accent-line">с удобством</span>
+      </h1>
+      <p class="hero-sub">
+        Используйте проверенные утилиты для выявления запрещённого ПО и
+        читов у игроков на проекте cs2bgd31.ru
+      </p>
+      <div class="hero-actions">
+        <a href="https://cs2bgd31.ru/" target="_blank" rel="noopener" class="btn-primary">
+          <svg class="btn-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3L11 8 6 13"/></svg>
+          Перейти на cs2bgd31.ru
+        </a>
+        <a href="#" class="btn-secondary" onclick="showPage('main', document.getElementById('nav-main'));return false;">
+          <svg class="btn-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 2v9M4 8l4 4 4-4"/><path d="M2 13h12"/></svg>
+          Скачать программы
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-char-placeholder">
+        <div class="char-glow"></div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">18<span>+</span></div>
+        <div class="stat-label">Утилит</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Сигнатур</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">14<span>+</span></div>
+        <div class="stat-label">Гайдов</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMS PAGE -->
+<div id="page-main">
+  <div class="page-hero">
+    <h1>Программы для проверок</h1>
+    <div class="warning">
+      <span class="warning-label">Важно</span>
+      Настоятельно рекомендуем <strong>не предоставлять</strong> модераторам или проверяющим полный доступ в программах удалённого управления (AnyDesk, TeamViewer и аналогичных), включая права на удалённое копирование файлов, изменение системных настроек, доступ без подтверждения и другие расширенные разрешения. Игрок обязан лично контролировать все действия, выполняемые на его компьютере.
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('programs', this)">Программы</button>
+      <button class="tab-btn" onclick="switchTab('signatures', this)">Сигнатуры</button>
+    </div>
+  </div>
+
+  <div class="section">
+
+    <!-- PROGRAMS TAB -->
+    <div id="programs" class="tab-content active">
+      <div class="section-label">Утилиты</div>
+      <div class="programs-grid">
+
+        <div class="program-card" onclick="downloadProgram('ShellBag')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>ShellBag</h3>
+          <p>Записи ShellBag в системном реестре</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('Everything')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>Everything</h3>
+          <p>Быстрый поиск файлов и папок по всему диску</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('LastActivityView')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>LastActivityView</h3>
+          <p>Последние действия пользователя в системе</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('BrowsingHistoryView')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>BrowsingHistoryView</h3>
+          <p>История посещений веб-страниц</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('USBDriveLog')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>USBDriveLog</h3>
+          <p>Журнал подключения внешних накопителей</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('WinPrefetchView')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>WinPrefetchView</h3>
+          <p>Prefetch данные системы Windows</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('RegScanner')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>RegScanner</h3>
+          <p>Поиск данных в системном реестре</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('Recuva')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>Recuva</h3>
+          <p>Поиск и восстановление удалённых данных</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('BrowserDownloadsView')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>BrowserDownloadsView</h3>
+          <p>Загруженные файлы из браузеров</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('SystemInformer')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>System Informer</h3>
+          <p>Мониторинг процессов и анализ памяти</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('JournalTrace')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>JournalTrace</h3>
+          <p>Анализ системного журнала NTFS</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('ExecutedProgramsList')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>ExecutedProgramsList</h3>
+          <p>История запущенных приложений</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('RecentFilesView')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>RecentFilesView</h3>
+          <p>Недавно использованные документы</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('BAMParser')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>BAMParser</h3>
+          <p>Background Activity Moderator данные</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('RegistryExplorer')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>RegistryExplorer</h3>
+          <p>Исследование структуры реестра Windows</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('PathsParser')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>PathsParser</h3>
+          <p>Обработка и анализ файловых путей</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('JumpListExplore')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>JumpListExplore</h3>
+          <p>Списки быстрого доступа Windows</p>
+        </div>
+
+        <div class="program-card" onclick="downloadProgram('SimpleUnlocker')">
+          <div class="download-overlay">
+            <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            <span class="dl-label">Скачать</span>
+          </div>
+          <h3>SimpleUnlocker</h3>
+          <p>Снятие блокировки с файлов системы</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIGNATURES TAB -->
+    <div id="signatures" class="tab-content">
+      <div class="section-label">Сигнатуры</div>
+
+      <div class="sig-card">
+        <h3>Everything</h3>
+        <div class="sig-desc">Поиск файлов по размеру</div>
+        <button class="copy-btn" onclick="copyText(this, 'size:20051kb | size:15110kb | size:13030kb | size:13485kb | size:17487kb | size:4311kb | size:16809kb | size:15090kb')">Копировать</button>
+        <div class="sig-code">size:20051kb | size:15110kb | size:13030kb | size:13485kb | size:17487kb | size:4311kb | size:16809kb | size:15090kb</div>
+      </div>
+
+      <div class="sig-card">
+        <h3>Everything</h3>
+        <div class="sig-desc">Поиск по названиям известных читов</div>
+        <button class="copy-btn" onclick="copyText(this, 'exloader | com.swiftsoft | xone | interium | skinchanger | extrimhack | nix | memesense | mvploader | sharkhack | exhack | neverkernel | vredux | mason | predator | aquila | luno | fecurity | cartel | aimstar | tkazer | naim | pellix | pussycat | axios | onemacro | softhub | proext | sapphire | interwebz | plague | vapehook | smurfwrecker | iniuria | yeahnot | legendware | hauntedproject | phoenixhack | onebyteradar | reborn | onebyte | osiris | ev0lve | ghostware | dexterion | basicmultihack | pudra | iCheat | sneakys | krazyhack | muhprime | drcheats | rootcheat | aeonix | zedt.pw | devcore | legifard | katebot | imxnoobx | w1nner | ekknod | neoxahack | warware | weave | aimmy | paradise | xenon | easysp | en1gma | Injector | .ahk | macros | bhop | bunnyhop | espd2x | avira | pphud | primordial | nonagon | legit | hvh | aimbot | s1mple | semirage | cheat | cs2.glow | invision | undetek | spurdo | webradar | valthrun')">Копировать</button>
+        <div class="sig-code">exloader | com.swiftsoft | xone | interium | skinchanger | extrimhack | nix | memesense | mvploader | sharkhack | exhack | neverkernel | vredux | mason | predator | aquila | luno | fecurity | cartel | aimstar | tkazer | naim | pellix | pussycat | axios | onemacro | softhub | proext | sapphire | interwebz | plague | vapehook | smurfwrecker | iniuria | yeahnot | legendware | hauntedproject | phoenixhack | onebyteradar | reborn | onebyte | osiris | ev0lve | ghostware | dexterion | basicmultihack | pudra | iCheat | sneakys | krazyhack | muhprime | drcheats | rootcheat | aeonix | zedt.pw | devcore | legifard | katebot | imxnoobx | w1nner | ekknod | neoxahack | warware | weave | aimmy | paradise | xenon | easysp | en1gma | Injector | .ahk | macros | bhop | bunnyhop | espd2x | avira | pphud | primordial | nonagon | legit | hvh | aimbot | s1mple | semirage | cheat | cs2.glow | invision | undetek | spurdo | webradar | valthrun</div>
+      </div>
+
+      <div class="sig-card">
+        <h3>Everything</h3>
+        <div class="sig-desc">Поиск остаточных файлов читов</div>
+        <button class="copy-btn" onclick="copyText(this, 'token.ms | schinese.bin | russian.bin | esp-icons.ttf | message-bus.bin | nl.log | nl_cs2.log')">Копировать</button>
+        <div class="sig-code">token.ms | schinese.bin | russian.bin | esp-icons.ttf | message-bus.bin | nl.log | nl_cs2.log</div>
+      </div>
+
+      <div class="sig-card">
+        <h3>Everything</h3>
+        <div class="sig-desc">Поиск исключительно: midnight, xone, nixware, spurdo</div>
+        <button class="copy-btn" onclick="copyRaw(this, 'midnight')">Копировать</button>
+        <div class="sig-code">size:10mb-20mb ext:exe utf8content:"xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'>"</div>
+      </div>
+
+      <!-- НОВЫЕ СИГНАТУРЫ -->
+
+      <div class="sig-card">
+        <h3>Everything</h3>
+        <div class="sig-desc">Определяет: Memesense</div>
+        <button class="copy-btn" onclick="copyRaw(this, 'memesense')">Копировать</button>
+        <div class="sig-code">size:10mb-20mb ext:exe utf8content:"&lt;ms_asmv1:requestedExecutionLeve"</div>
+      </div>
+
+      <div class="sig-card">
+        <h3>Everything</h3>
+        <div class="sig-desc">Определяет: Fatality</div>
+        <button class="copy-btn" onclick="copyRaw(this, 'fatality')">Копировать</button>
+        <div class="sig-code">ext:exe size:3mb-7mb utf8content:"urn:schemas-microsoft-com:asm.v1" utf8content:"requestedExecutionLevel" utf8content:"requireAdministrator" utf8content:"&lt;/supportedOS&gt;"</div>
+      </div>
+
+      <div class="sig-card">
+        <h3>Everything</h3>
+        <div class="sig-desc">Определяет: Interium</div>
+        <button class="copy-btn" onclick="copyRaw(this, 'interium')">Копировать</button>
+        <div class="sig-code">ext:exe size:3mb-7mb utf8content:"Wzo8f9:GPd_C["</div>
+      </div>
+
+      <div class="sig-card">
+        <h3>SystemInformer</h3>
+        <div class="sig-desc">Только для процесса csrss.exe</div>
+        <button class="copy-btn" id="csrss-btn" onclick="copyRaw(this, 'csrss')">Копировать</button>
+        <div class="sig-code">^(([a-zA-Z]{1}:|\\)(\\[^\\/<>:\|\*\?"]+)+\.[^\\/<>:\|]{3,4})</div>
+      </div>
+
+      <div class="sig-card">
+        <h3>SystemInformer</h3>
+        <div class="sig-desc">Поиск посещений сайтов с читами</div>
+        <button class="copy-btn" onclick="copyText(this, 'doomxtf.com|axios-macro.com|midnight.im|xone.fun|blast.hk|yougame.biz|jestkii|wh-satano|cheatcsgo|interium|r8cheats|ezcheats|exloader|cs-elect.ru|extrimhack|neverlose.cc|gamesense|legendware|nixware|phoenix-hack|rf-cheats|anyx.gg|hackvshack.net|ezyhack|unknowncheats|cheater.ninja|insanitycheats.com|cheater.fun|100cheats.ru|undetek.com|cs-elect.ru|cheater.world|zelenka.guru/tags/cs2-cheat|procheats|hells-hack.com|clickhack.ru|procheat.pro|cheatermad.com|420cheats.com|cs2-cheat|wh-satano.ru|up-game.pro|millex.xyz|boohack.ru|procheat.pro|elitehacks.ru|cheatcsgo.ru|box-cheat.ru|novamacro|predator.systems|mvploader|securecheats|darkaim|invision.gg|elitepvpers.com|privatecheatz|cosmocheats|skycheats.com|rockpapershotgun.com|en1gma.tech|lunocs2.ru|abyss.gg|ezcs.ru|kitchenhack.ru|ezyhack.ru|extrimhack.ru|dhjcheats.com|aimcop.ru|novamacro.xyz|promacro.ru|promacro.store|botmek.ru|topmacro.ru|ggmacro.ru|aimstar|myhacks.store|interium.ooo|nixware.cc|arayas-cheats.com|x-cheats.com|r8cheats.guru|gamebreaker.ru|cheatside.ru|shadowcheat.pro|h4ck.shop|select-place.ru|oplata.info|Spurdo.me|Chieftain')">Копировать</button>
+        <div class="sig-code">doomxtf.com|axios-macro.com|midnight.im|xone.fun|blast.hk|yougame.biz|jestkii|wh-satano|cheatcsgo|interium|r8cheats|ezcheats|exloader|cs-elect.ru|extrimhack|neverlose.cc|gamesense|legendware|nixware|phoenix-hack|rf-cheats|anyx.gg|hackvshack.net|ezyhack|unknowncheats|cheater.ninja|insanitycheats.com|cheater.fun|100cheats.ru|undetek.com|cs-elect.ru|cheater.world|zelenka.guru/tags/cs2-cheat|procheats|hells-hack.com|clickhack.ru|procheat.pro|cheatermad.com|420cheats.com|cs2-cheat|wh-satano.ru|up-game.pro|millex.xyz|boohack.ru|procheat.pro|elitehacks.ru|cheatcsgo.ru|box-cheat.ru|novamacro|predator.systems|mvploader|securecheats|darkaim|invision.gg|elitepvpers.com|privatecheatz|cosmocheats|skycheats.com|rockpapershotgun.com|en1gma.tech|lunocs2.ru|abyss.gg|ezcs.ru|kitchenhack.ru|ezyhack.ru|extrimhack.ru|dhjcheats.com|aimcop.ru|novamacro.xyz|promacro.ru|promacro.store|botmek.ru|topmacro.ru|ggmacro.ru|aimstar|myhacks.store|interium.ooo|nixware.cc|arayas-cheats.com|x-cheats.com|r8cheats.guru|gamebreaker.ru|cheatside.ru|shadowcheat.pro|h4ck.shop|select-place.ru|oplata.info|Spurdo.me|Chieftain</div>
+      </div>
+
+      <div class="sig-card">
+        <h3>SystemInformer — Steam (memory → strings)</h3>
+        <div class="sig-desc">Значение: 5, галочки «Image» + «Mapped» → Filter → contains (case-insensitive). Определяет читы в памяти процесса Steam</div>
+        <button class="copy-btn" onclick="copyText(this, 'Nonagon | Sharkhack | Memesense | Airflow | Passathook | Necrum | Neoxa7 | winner | Victoria | Weave | Aimware | Plague | Undetek | Senakys | Vanity | zrk | orbit | naim | skechware | aimstar | internal | simple | Axion | Nix | Midnight')">Копировать</button>
+        <div class="sig-code">Nonagon | Sharkhack | Memesense | Airflow | Passathook | Necrum | Neoxa7 | winner | Victoria | Weave | Aimware | Plague | Undetek | Senakys | Vanity | zrk | orbit | naim | skechware | aimstar | internal | simple | Axion | Nix | Midnight</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- GUIDE PAGE -->
+<div id="page-guide">
+  <div class="guide-hero">
+    <h1>Руководство по <span>проверке</span></h1>
+    <p>Пошаговая инструкция по использованию программ для проверки системы</p>
+  </div>
+
+  <div class="guide-section">
+
+    <div class="accordion open">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">1</span>
+        <span class="acc-title">Подготовка к проверке</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        Перед началом проверки убедитесь, что:
+        <ul>
+          <li>У вас есть стабильное интернет-соединение</li>
+          <li>Закрыты все игры и подозрительные программы</li>
+          <li>Вы готовы предоставить доступ к необходимым файлам и папкам</li>
+          <li>Антивирус временно отключен (некоторые утилиты могут быть заблокированы)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">2</span>
+        <span class="acc-title">Скачивание программ</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <div class="step">1. Перейдите на страницу «Программы»</div>
+        <div class="step">2. Скачайте необходимые утилиты для проверки</div>
+        <div class="step">3. Распакуйте архивы в отдельную папку</div>
+        <div class="step">4. Запустите программы от имени администратора</div>
+        <br>
+        Рекомендуемые программы для базовой проверки:
+        <ul>
+          <li><strong>Everything</strong> — для поиска файлов</li>
+          <li><strong>System Informer</strong> — для проверки процессов</li>
+          <li><strong>LastActivityView</strong> — для анализа активности</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">3</span>
+        <span class="acc-title">Использование сигнатур</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <div class="step">1. Откройте вкладку «Сигнатуры» на странице программ</div>
+        <div class="step">2. Скопируйте нужную сигнатуру</div>
+        <div class="step">3. Вставьте её в соответствующую программу:</div>
+        <ul>
+          <li>Для Everything: вставьте в строку поиска</li>
+          <li>Для System Informer: используйте в фильтрах</li>
+        </ul>
+        <div class="step" style="margin-top:6px">4. Проанализируйте результаты поиска</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">4</span>
+        <span class="acc-title">Проверка файловой системы</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        Используйте <strong>Everything</strong> для поиска:
+        <ul>
+          <li>Подозрительных файлов по размеру</li>
+          <li>Известных названий читов</li>
+          <li>Остаточных файлов после удаления</li>
+        </ul>
+        <br>Обратите внимание на:
+        <ul>
+          <li>Скрытые папки и файлы</li>
+          <li>Недавно изменённые файлы</li>
+          <li>Файлы в системных директориях</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">5</span>
+        <span class="acc-title">Проверка процессов и памяти</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <strong>System Informer</strong> позволяет:
+        <ul>
+          <li>Просматривать все запущенные процессы</li>
+          <li>Анализировать использование памяти</li>
+          <li>Находить скрытые процессы</li>
+          <li>Проверять цифровые подписи</li>
+        </ul>
+        <br>Что искать:
+        <ul>
+          <li>Процессы без описания или издателя</li>
+          <li>Подозрительное использование памяти</li>
+          <li>Процессы, маскирующиеся под системные</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">6</span>
+        <span class="acc-title">Анализ истории активности</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <strong>LastActivityView</strong> показывает:
+        <ul>
+          <li>Недавно запущенные программы</li>
+          <li>Открытые файлы и документы</li>
+          <li>Подключения к сети</li>
+          <li>Изменения в системе</li>
+        </ul>
+        <br><strong>BrowsingHistoryView</strong> помогает найти:
+        <ul>
+          <li>Посещения сайтов с читами</li>
+          <li>Загрузки подозрительных файлов</li>
+          <li>Историю поиска читов</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">7</span>
+        <span class="acc-title">Проверка реестра</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <strong>RegScanner</strong> и <strong>RegistryExplorer</strong> для:
+        <ul>
+          <li>Поиска записей о читах</li>
+          <li>Анализа автозагрузки</li>
+          <li>Проверки ShellBag записей</li>
+          <li>Поиска следов удалённых программ</li>
+        </ul>
+        <br>Ключевые области реестра:
+        <ul>
+          <li>HKEY_CURRENT_USER\Software</li>
+          <li>HKEY_LOCAL_MACHINE\Software</li>
+          <li>Run и RunOnce ключи</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">8</span>
+        <span class="acc-title">Проверка USB и внешних устройств</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <strong>USBDriveLog</strong> показывает:
+        <ul>
+          <li>Все подключённые USB-устройства</li>
+          <li>Время подключения и отключения</li>
+          <li>Серийные номера устройств</li>
+          <li>Названия и производителей</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">9</span>
+        <span class="acc-title">Анализ Prefetch и BAM</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <strong>WinPrefetchView</strong> и <strong>BAMParser</strong> для:
+        <ul>
+          <li>Просмотра истории запуска программ</li>
+          <li>Определения времени последнего запуска</li>
+          <li>Подсчёта количества запусков</li>
+          <li>Анализа удалённых программ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">10</span>
+        <span class="acc-title">Восстановление удалённых файлов</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <strong>Recuva</strong> помогает найти:
+        <ul>
+          <li>Недавно удалённые файлы</li>
+          <li>Следы читов после очистки</li>
+          <li>Скрытые данные</li>
+        </ul>
+        <br>Рекомендации:
+        <ul>
+          <li>Сканируйте системный диск</li>
+          <li>Обращайте внимание на .dll, .exe, .cfg файлы</li>
+          <li>Проверяйте временные папки</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">11</span>
+        <span class="acc-title">Проверка истории браузера</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <strong>BrowserDownloadsView</strong> и <strong>BrowsingHistoryView</strong>:
+        <ul>
+          <li>Показывают все загрузки из браузеров</li>
+          <li>Отображают посещённые сайты</li>
+          <li>Сохраняют даже удалённую историю</li>
+        </ul>
+        <br>Что проверять:
+        <ul>
+          <li>Сайты с читами и макросами</li>
+          <li>Загрузки .exe, .dll, .zip файлов</li>
+          <li>Форумы и Discord серверы о читах</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">12</span>
+        <span class="acc-title">Анализ Jump Lists</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <strong>JumpListExplorer</strong> показывает:
+        <ul>
+          <li>Недавно открытые файлы в программах</li>
+          <li>Часто используемые документы</li>
+          <li>Пути к файлам, даже если они удалены</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">13</span>
+        <span class="acc-title">Безопасность при проверке</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        <strong>Важно:</strong>
+        <ul>
+          <li>Никогда не давайте полный доступ к удалённому управлению</li>
+          <li>Контролируйте все действия проверяющего</li>
+          <li>Не разрешайте скачивать неизвестные файлы</li>
+          <li>Не выполняйте команды, которые не понимаете</li>
+          <li>Делайте резервные копии важных данных</li>
+        </ul>
+        <br>Запрещено:
+        <ul>
+          <li>Копирование файлов проверяющим</li>
+          <li>Выполнение скриптов без вашего ведома</li>
+          <li>Изменение системных настроек</li>
+          <li>Удаление файлов без подтверждения</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAcc(this)">
+        <span class="acc-num">14</span>
+        <span class="acc-title">Что делать после проверки</span>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="accordion-body">
+        После завершения проверки:
+        <ul>
+          <li>Удалите все скачанные утилиты (если не нужны)</li>
+          <li>Включите антивирус обратно</li>
+          <li>Проверьте систему на вирусы</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="guide-cta">
+    <button onclick="showPage('main', document.getElementById('nav-main'))">Перейти к программам</button>
+  </div>
+</div>
+
+<script>
+  const rawStrings = {
+    midnight: `size:10mb-20mb ext:exe utf8content:"xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'>"`,
+    csrss: String.raw`^(([a-zA-Z]{1}:|\\)(\\[^\\/<>:\|\*\?"]+)+\.[^\\/<>:\|]{3,4})`,
+    memesense: `size:10mb-20mb ext:exe utf8content:"<ms_asmv1:requestedExecutionLeve"`,
+    fatality: `ext:exe size:3mb-7mb utf8content:"urn:schemas-microsoft-com:asm.v1" utf8content:"requestedExecutionLevel" utf8content:"requireAdministrator" utf8content:"</supportedOS>"`,
+    interium: `ext:exe size:3mb-7mb utf8content:"Wzo8f9:GPd_C["`,
+  };
+
+  function copyRaw(btn, key) { copyText(btn, rawStrings[key]); }
+
+  function showPage(page, clickedLink) {
+    ['home','main','guide'].forEach(p => {
+      document.getElementById('page-' + p).style.display = 'none';
+    });
+    const target = document.getElementById('page-' + page);
+    target.style.display = page === 'home' ? 'flex' : 'block';
+    target.style.animation = 'none';
+    void target.offsetWidth;
+    target.style.animation = 'fadeUp 0.45s ease both';
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    if (clickedLink) clickedLink.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleAcc(header) {
+    const clicked = header.parentElement;
+    const isOpen = clicked.classList.contains('open');
+    document.querySelectorAll('.accordion.open').forEach(acc => acc.classList.remove('open'));
+    if (!isOpen) {
+      clicked.classList.add('open');
+      setTimeout(() => clicked.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  }
+
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    const target = document.getElementById(id);
+    target.classList.add('active');
+    target.style.animation = 'none';
+    void target.offsetWidth;
+    target.style.animation = 'fadeUp 0.35s ease both';
+    btn.classList.add('active');
+  }
+
+  const downloadLinks = {
+    ShellBag: 'https://github.com/glazki2/cs2bgd.galzki/releases/download/v1.0.0/shellbag_analyzer_cleaner.exe',
+    Everything: 'https://www.voidtools.com/Everything-1.5.0.1404a.x64.zip',
+    LastActivityView: 'https://www.nirsoft.net/utils/lastactivityview.zip',
+    BrowsingHistoryView: 'https://www.nirsoft.net/utils/browsinghistoryview.zip',
+    USBDriveLog: 'https://www.nirsoft.net/utils/usbdrivelog.zip',
+    WinPrefetchView: 'https://www.nirsoft.net/utils/winprefetchview.zip',
+    RegScanner: 'https://www.nirsoft.net/utils/regscanner.zip',
+    Recuva: 'https://download.ccleaner.com/rcsetup154.exe',
+    BrowserDownloadsView: 'https://www.nirsoft.net/utils/browserdownloadsview.zip',
+    SystemInformer: 'https://systeminformer.com/downloads',
+    JournalTrace: 'https://github.com/spokwn/JournalTrace/releases/download/1.2/JournalTraceNormal.exe',
+    ExecutedProgramsList: 'https://www.nirsoft.net/utils/executedprogramslist.zip',
+    RecentFilesView: 'https://www.nirsoft.net/utils/recentfilesview.zip',
+    BAMParser: 'https://github.com/spokwn/BAM-parser/releases/download/v1.2.9/BAMParser.exe',
+    RegistryExplorer: 'https://download.ericzimmermanstools.com/net9/RegistryExplorer.zip',
+    PathsParser: 'https://github.com/spokwn/PathsParser/releases/download/v1.2/PathsParser.exe',
+    JumpListExplore: 'https://download.ericzimmermanstools.com/net9/JumpListExplorer.zip',
+    SimpleUnlocker: 'https://simpleunlocker.ds1nc.ru/release/simpleunlocker_release.zip',
+  };
+
+  function downloadProgram(name) {
+    const url = downloadLinks[name];
+    if (!url) return;
+    const a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+
+  function copyText(btn, text) {
+    const doFallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+    };
+    const showSuccess = () => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = 'Скопировано';
+      btn.style.background = '#166534';
+      btn.style.boxShadow = '0 0 14px rgba(22,101,52,0.5)';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.boxShadow = ''; }, 2000);
+    };
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).then(showSuccess).catch(() => { doFallback(); showSuccess(); });
+    } else { doFallback(); showSuccess(); }
+  }
+</script>
+
+<!-- ADMIN BUTTON -->
+<div id="admin-btn-wrap" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
+  <button id="admin-open-btn" style="width:48px;height:48px;border-radius:50%;background:#0e0f1a;border:2px solid rgba(208,32,192,0.5);color:rgba(208,32,192,0.8);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(208,32,192,0.2);transition:all 0.3s;" title="Панель администратора" onmouseover="this.style.borderColor='#d020c0';this.style.color='#d020c0';this.style.boxShadow='0 0 28px rgba(208,32,192,0.5)';this.style.transform='scale(1.1)'" onmouseout="this.style.borderColor='rgba(208,32,192,0.5)';this.style.color='rgba(208,32,192,0.8)';this.style.boxShadow='0 0 20px rgba(208,32,192,0.2)';this.style.transform='scale(1)'">⚙</button>
+</div>
+
+<!-- ADMIN LOGIN MODAL -->
+<div id="admin-login-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div style="background:#0e0f1a;border:1px solid rgba(208,32,192,0.3);border-radius:14px;padding:36px 40px;width:340px;box-shadow:0 0 60px rgba(208,32,192,0.15);animation:fadeUp 0.3s ease both;">
+    <div style="font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:6px;">Панель администратора</div>
+    <div style="font-size:0.8rem;color:#6b6b8e;margin-bottom:24px;">Введите пароль для входа</div>
+    <input id="admin-pass-input" type="password" placeholder="Пароль..." onkeydown="if(event.key==='Enter')checkAdminPass()" style="width:100%;padding:11px 14px;background:#08090f;border:1px solid #1c1d2e;border-radius:8px;color:#e2e2ee;font-family:'Exo 2',sans-serif;font-size:0.9rem;outline:none;margin-bottom:8px;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(208,32,192,0.5)'" onblur="this.style.borderColor='#1c1d2e'"/>
+    <div id="admin-pass-error" style="font-size:0.75rem;color:#e05050;margin-bottom:12px;min-height:18px;"></div>
+    <div style="display:flex;gap:10px;">
+      <button onclick="checkAdminPass()" style="flex:1;padding:11px;background:#d020c0;color:#fff;border:none;border-radius:8px;font-family:'Exo 2',sans-serif;font-weight:600;cursor:pointer;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.background='#e040d0'" onmouseout="this.style.background='#d020c0'">Войти</button>
+      <button onclick="closeAdminLogin()" style="padding:11px 18px;background:rgba(255,255,255,0.05);color:#6b6b8e;border:1px solid rgba(255,255,255,0.1);border-radius:8px;font-family:'Exo 2',sans-serif;cursor:pointer;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.color='#e2e2ee'" onmouseout="this.style.color='#6b6b8e'">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" style="display:none;position:fixed;inset:0;z-index:1000;background:#08090f;overflow-y:auto;">
+  <div style="max-width:900px;margin:0 auto;padding:32px 24px 80px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid #1c1d2e;">
+      <div>
+        <div style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;color:#fff;">⚙ Админ-панель</div>
+        <div style="font-size:0.8rem;color:#6b6b8e;margin-top:3px;">Управление контентом сайта</div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button onclick="adminSaveAll()" style="padding:10px 22px;background:#d020c0;color:#fff;border:none;border-radius:8px;font-family:'Exo 2',sans-serif;font-weight:600;cursor:pointer;font-size:0.85rem;box-shadow:0 0 20px rgba(208,32,192,0.3);transition:all 0.2s;">💾 Сохранить всё</button>
+        <button onclick="adminLogout()" style="padding:10px 18px;background:rgba(255,255,255,0.05);color:#6b6b8e;border:1px solid rgba(255,255,255,0.1);border-radius:8px;font-family:'Exo 2',sans-serif;cursor:pointer;font-size:0.85rem;transition:all 0.2s;" onmouseover="this.style.color='#e2e2ee'" onmouseout="this.style.color='#6b6b8e'">Выйти</button>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:4px;margin-bottom:28px;background:#0e0f1a;border:1px solid #1c1d2e;border-radius:10px;padding:4px;">
+      <button class="adm-tab active" onclick="switchAdminTab('programs',this)" style="flex:1;padding:9px;border:none;border-radius:7px;background:#d020c0;color:#fff;font-family:'Exo 2',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;transition:all 0.2s;">📦 Программы</button>
+      <button class="adm-tab" onclick="switchAdminTab('signatures',this)" style="flex:1;padding:9px;border:none;border-radius:7px;background:transparent;color:#6b6b8e;font-family:'Exo 2',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;transition:all 0.2s;">🔍 Сигнатуры</button>
+      <button class="adm-tab" onclick="switchAdminTab('guide',this)" style="flex:1;padding:9px;border:none;border-radius:7px;background:transparent;color:#6b6b8e;font-family:'Exo 2',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;transition:all 0.2s;">📖 Руководство</button>
+      <button class="adm-tab" onclick="switchAdminTab('password',this)" style="flex:1;padding:9px;border:none;border-radius:7px;background:transparent;color:#6b6b8e;font-family:'Exo 2',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;transition:all 0.2s;">🔑 Пароль</button>
+    </div>
+
+    <div id="adm-programs" class="adm-section">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#fff;letter-spacing:0.05em;">ПРОГРАММЫ</div>
+        <button onclick="addProgram()" style="padding:8px 16px;background:rgba(208,32,192,0.1);color:#d020c0;border:1px solid rgba(208,32,192,0.3);border-radius:7px;font-family:'Exo 2',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;">+ Добавить программу</button>
+      </div>
+      <div id="programs-editor"></div>
+    </div>
+
+    <div id="adm-signatures" class="adm-section" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#fff;letter-spacing:0.05em;">СИГНАТУРЫ</div>
+        <button onclick="addSignature()" style="padding:8px 16px;background:rgba(208,32,192,0.1);color:#d020c0;border:1px solid rgba(208,32,192,0.3);border-radius:7px;font-family:'Exo 2',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;">+ Добавить сигнатуру</button>
+      </div>
+      <div id="signatures-editor"></div>
+    </div>
+
+    <div id="adm-guide" class="adm-section" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <div style="font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#fff;letter-spacing:0.05em;">РУКОВОДСТВО</div>
+        <button onclick="addGuideItem()" style="padding:8px 16px;background:rgba(208,32,192,0.1);color:#d020c0;border:1px solid rgba(208,32,192,0.3);border-radius:7px;font-family:'Exo 2',sans-serif;font-weight:600;font-size:0.82rem;cursor:pointer;">+ Добавить пункт</button>
+      </div>
+      <div id="guide-editor"></div>
+    </div>
+
+    <div id="adm-password" class="adm-section" style="display:none;">
+      <div style="font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:20px;">СМЕНА ПАРОЛЯ</div>
+      <div style="background:#0e0f1a;border:1px solid #1c1d2e;border-radius:10px;padding:24px;max-width:400px;">
+        <input id="new-pass-1" type="password" placeholder="Новый пароль..." style="width:100%;padding:10px 14px;background:#08090f;border:1px solid #1c1d2e;border-radius:8px;color:#e2e2ee;font-family:'Exo 2',sans-serif;font-size:0.88rem;outline:none;margin-bottom:10px;"/>
+        <input id="new-pass-2" type="password" placeholder="Повторите пароль..." style="width:100%;padding:10px 14px;background:#08090f;border:1px solid #1c1d2e;border-radius:8px;color:#e2e2ee;font-family:'Exo 2',sans-serif;font-size:0.88rem;outline:none;margin-bottom:10px;"/>
+        <div id="pass-change-msg" style="font-size:0.78rem;min-height:18px;margin-bottom:10px;"></div>
+        <button onclick="changeAdminPass()" style="width:100%;padding:10px;background:#d020c0;color:#fff;border:none;border-radius:8px;font-family:'Exo 2',sans-serif;font-weight:600;cursor:pointer;font-size:0.88rem;">Сменить пароль</button>
+      </div>
+    </div>
+
+    <div id="save-notice" style="display:none;position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#166534;color:#fff;padding:12px 28px;border-radius:8px;font-family:'Exo 2',sans-serif;font-weight:600;font-size:0.88rem;box-shadow:0 0 20px rgba(22,101,52,0.4);z-index:9999;">✓ Изменения сохранены</div>
+  </div>
+</div>
+
+<script>
+const ADMIN_PASS_KEY = 'bgd_admin_pass';
+const DATA_KEY = 'bgd_site_data';
+const DEFAULT_PASS = 'BGD2024admin';
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('admin-open-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    openAdminLogin();
+  });
+  const saved = getSiteData();
+  if (saved) applyDataToSite(saved);
+});
+
+function getAdminPass() { return localStorage.getItem(ADMIN_PASS_KEY) || DEFAULT_PASS; }
+
+function openAdminLogin() {
+  const m = document.getElementById('admin-login-modal');
+  m.style.display = 'flex';
+  document.getElementById('admin-pass-input').value = '';
+  document.getElementById('admin-pass-error').textContent = '';
+  setTimeout(() => document.getElementById('admin-pass-input').focus(), 100);
+}
+
+function closeAdminLogin() { document.getElementById('admin-login-modal').style.display = 'none'; }
+
+function checkAdminPass() {
+  const val = document.getElementById('admin-pass-input').value;
+  if (val === getAdminPass()) { closeAdminLogin(); openAdminPanel(); }
+  else {
+    document.getElementById('admin-pass-error').textContent = '✗ Неверный пароль';
+    document.getElementById('admin-pass-input').style.borderColor = 'rgba(224,80,80,0.6)';
+    setTimeout(() => { document.getElementById('admin-pass-input').style.borderColor = '#1c1d2e'; }, 1500);
+  }
+}
+
+function changeAdminPass() {
+  const p1 = document.getElementById('new-pass-1').value;
+  const p2 = document.getElementById('new-pass-2').value;
+  const msg = document.getElementById('pass-change-msg');
+  if (!p1) { msg.style.color='#e05050'; msg.textContent='Введите пароль'; return; }
+  if (p1 !== p2) { msg.style.color='#e05050'; msg.textContent='Пароли не совпадают'; return; }
+  if (p1.length < 6) { msg.style.color='#e05050'; msg.textContent='Минимум 6 символов'; return; }
+  localStorage.setItem(ADMIN_PASS_KEY, p1);
+  msg.style.color = '#4ade80';
+  msg.textContent = '✓ Пароль изменён';
+  document.getElementById('new-pass-1').value = '';
+  document.getElementById('new-pass-2').value = '';
+}
+
+function getSiteData() {
+  try { const r = localStorage.getItem(DATA_KEY); if (r) return JSON.parse(r); } catch(e) {}
+  return null;
+}
+
+function saveSiteData(data) { localStorage.setItem(DATA_KEY, JSON.stringify(data)); }
+
+function collectCurrentData() {
+  const programs = [];
+  document.querySelectorAll('#programs .program-card').forEach(card => {
+    programs.push({ name: card.querySelector('h3')?.textContent||'', desc: card.querySelector('p')?.textContent||'', dlKey: card.getAttribute('data-dlkey')||'' });
+  });
+  const signatures = [];
+  document.querySelectorAll('.sig-card').forEach(card => {
+    signatures.push({ tool: card.querySelector('h3')?.textContent||'', desc: card.querySelector('.sig-desc')?.textContent||'', code: card.querySelector('.sig-code')?.textContent||'' });
+  });
+  const guide = [];
+  document.querySelectorAll('.accordion').forEach(acc => {
+    guide.push({ title: acc.querySelector('.acc-title')?.textContent||'', body: acc.querySelector('.accordion-body')?.innerHTML||'' });
+  });
+  return { programs, signatures, guide };
+}
+
+let adminData = null;
+
+function openAdminPanel() {
+  adminData = getSiteData() || collectCurrentData();
+  document.getElementById('admin-panel').style.display = 'block';
+  renderProgramsEditor();
+  renderSignaturesEditor();
+  renderGuideEditor();
+}
+
+function adminLogout() { document.getElementById('admin-panel').style.display = 'none'; adminData = null; }
+
+function switchAdminTab(tab, btn) {
+  document.querySelectorAll('.adm-section').forEach(s => s.style.display = 'none');
+  document.getElementById('adm-' + tab).style.display = 'block';
+  document.querySelectorAll('.adm-tab').forEach(b => { b.style.background='transparent'; b.style.color='#6b6b8e'; });
+  btn.style.background = '#d020c0'; btn.style.color = '#fff';
+}
+
+const inputStyle = "width:100%;padding:9px 12px;background:#08090f;border:1px solid #1c1d2e;border-radius:7px;color:#e2e2ee;font-family:inherit;font-size:0.83rem;outline:none;transition:border-color 0.2s;";
+const taStyle = "width:100%;padding:9px 12px;background:#08090f;border:1px solid #1c1d2e;border-radius:7px;color:#e2e2ee;font-family:inherit;font-size:0.83rem;outline:none;resize:vertical;min-height:80px;";
+const labelStyle = "font-size:0.72rem;color:#6b6b8e;margin-bottom:5px;display:block;letter-spacing:0.04em;";
+const cardWrap = "background:#0e0f1a;border:1px solid #1c1d2e;border-radius:10px;padding:18px;margin-bottom:12px;";
+const delBtnStyle = "padding:6px 12px;background:rgba(224,80,80,0.1);color:#e05050;border:1px solid rgba(224,80,80,0.3);border-radius:6px;font-family:inherit;font-size:0.78rem;cursor:pointer;";
+
+function renderProgramsEditor() {
+  const el = document.getElementById('programs-editor'); el.innerHTML = '';
+  (adminData.programs||[]).forEach((p,i) => {
+    const div = document.createElement('div'); div.style.cssText = cardWrap;
+    div.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:0.8rem;color:#d020c0;font-family:'Rajdhani',sans-serif;font-weight:700;">ПРОГРАММА #${i+1}</div><button style="${delBtnStyle}" onclick="deleteProgram(${i})">✕ Удалить</button></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;"><div><label style="${labelStyle}">НАЗВАНИЕ</label><input style="${inputStyle}" value="${escHtml(p.name)}" onchange="adminData.programs[${i}].name=this.value"/></div><div><label style="${labelStyle}">ОПИСАНИЕ</label><input style="${inputStyle}" value="${escHtml(p.desc)}" onchange="adminData.programs[${i}].desc=this.value"/></div><div><label style="${labelStyle}">ССЫЛКА</label><input style="${inputStyle}" value="${escHtml(p.dlKey)}" placeholder="https://..." onchange="adminData.programs[${i}].dlKey=this.value"/></div></div>`;
+    el.appendChild(div);
+  });
+}
+
+function addProgram() { adminData.programs.push({name:'Новая программа',desc:'Описание',dlKey:''}); renderProgramsEditor(); document.getElementById('programs-editor').lastChild?.scrollIntoView({behavior:'smooth'}); }
+function deleteProgram(i) { if(!confirm('Удалить?'))return; adminData.programs.splice(i,1); renderProgramsEditor(); }
+
+function renderSignaturesEditor() {
+  const el = document.getElementById('signatures-editor'); el.innerHTML = '';
+  (adminData.signatures||[]).forEach((s,i) => {
+    const div = document.createElement('div'); div.style.cssText = cardWrap;
+    div.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:0.8rem;color:#d020c0;font-family:'Rajdhani',sans-serif;font-weight:700;">СИГНАТУРА #${i+1}</div><button style="${delBtnStyle}" onclick="deleteSignature(${i})">✕ Удалить</button></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;"><div><label style="${labelStyle}">ИНСТРУМЕНТ</label><input style="${inputStyle}" value="${escHtml(s.tool)}" onchange="adminData.signatures[${i}].tool=this.value"/></div><div><label style="${labelStyle}">ОПИСАНИЕ</label><input style="${inputStyle}" value="${escHtml(s.desc)}" onchange="adminData.signatures[${i}].desc=this.value"/></div></div><div><label style="${labelStyle}">СИГНАТУРА</label><textarea style="${taStyle}" onchange="adminData.signatures[${i}].code=this.value">${escHtml(s.code)}</textarea></div>`;
+    el.appendChild(div);
+  });
+}
+
+function addSignature() { adminData.signatures.push({tool:'Everything',desc:'Описание',code:''}); renderSignaturesEditor(); document.getElementById('signatures-editor').lastChild?.scrollIntoView({behavior:'smooth'}); }
+function deleteSignature(i) { if(!confirm('Удалить?'))return; adminData.signatures.splice(i,1); renderSignaturesEditor(); }
+
+function renderGuideEditor() {
+  const el = document.getElementById('guide-editor'); el.innerHTML = '';
+  (adminData.guide||[]).forEach((g,i) => {
+    const div = document.createElement('div'); div.style.cssText = cardWrap;
+    div.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:0.8rem;color:#d020c0;font-family:'Rajdhani',sans-serif;font-weight:700;">ПУНКТ #${i+1}</div><button style="${delBtnStyle}" onclick="deleteGuideItem(${i})">✕ Удалить</button></div><div style="margin-bottom:12px;"><label style="${labelStyle}">ЗАГОЛОВОК</label><input style="${inputStyle}" value="${escHtml(g.title)}" onchange="adminData.guide[${i}].title=this.value"/></div><div><label style="${labelStyle}">СОДЕРЖИМОЕ (HTML)</label><textarea style="${taStyle}min-height:120px;" onchange="adminData.guide[${i}].body=this.value">${escHtml(g.body)}</textarea></div>`;
+    el.appendChild(div);
+  });
+}
+
+function addGuideItem() { adminData.guide.push({title:'Новый пункт',body:'Описание...'}); renderGuideEditor(); document.getElementById('guide-editor').lastChild?.scrollIntoView({behavior:'smooth'}); }
+function deleteGuideItem(i) { if(!confirm('Удалить?'))return; adminData.guide.splice(i,1); renderGuideEditor(); }
+
+function adminSaveAll() {
+  saveSiteData(adminData);
+  applyDataToSite(adminData);
+  showSaveNotice();
+}
+
+function applyDataToSite(data) {
+  if (data.programs) {
+    const grid = document.querySelector('#programs .programs-grid');
+    if (grid) {
+      grid.innerHTML = '';
+      data.programs.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'program-card';
+        div.setAttribute('data-dlkey', p.dlKey);
+        div.setAttribute('onclick', `window.open(${JSON.stringify(p.dlKey)},'_blank')`);
+        div.innerHTML = `<div class="download-overlay"><svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg><span class="dl-label">Скачать</span></div><h3>${escHtml(p.name)}</h3><p>${escHtml(p.desc)}</p>`;
+        grid.appendChild(div);
+      });
+    }
+  }
+  if (data.signatures) {
+    const cont = document.querySelector('#signatures');
+    if (cont) {
+      cont.innerHTML = '<div class="section-label">Сигнатуры</div>';
+      data.signatures.forEach(s => {
+        const div = document.createElement('div');
+        div.className = 'sig-card';
+        div.innerHTML = `<h3>${escHtml(s.tool)}</h3><div class="sig-desc">${escHtml(s.desc)}</div><button class="copy-btn" onclick="copyText(this,${JSON.stringify(s.code)})">Копировать</button><div class="sig-code">${escHtml(s.code)}</div>`;
+        cont.appendChild(div);
+      });
+    }
+  }
+  if (data.guide) {
+    const section = document.querySelector('.guide-section');
+    if (section) {
+      section.innerHTML = '';
+      data.guide.forEach((g,i) => {
+        const div = document.createElement('div');
+        div.className = 'accordion' + (i===0?' open':'');
+        div.innerHTML = `<div class="accordion-header" onclick="toggleAcc(this)"><span class="acc-num">${i+1}</span><span class="acc-title">${escHtml(g.title)}</span><span class="acc-arrow">▼</span></div><div class="accordion-body">${g.body}</div>`;
+        section.appendChild(div);
+      });
+    }
+  }
+}
+
+function showSaveNotice() {
+  const n = document.getElementById('save-notice');
+  n.style.display = 'block';
+  setTimeout(() => { n.style.display = 'none'; }, 2500);
+}
+
+function escHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+
+</body>
+</html>
