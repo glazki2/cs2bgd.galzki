@@ -870,7 +870,7 @@
   }
 
   .accordion.open .accordion-body {
-    max-height: 900px;
+    max-height: 2400px;
     padding: 16px 20px 20px 56px;
     border-top: 1px solid var(--border);
     opacity: 1;
@@ -1418,7 +1418,7 @@
   </div>
 
   <footer>
-    © 2024 <a href="https://cs2bgd31.ru/">CS2BGD31.RU</a> — Все права защищены
+    © 2025 <a href="https://cs2bgd31.ru/">CS2BGD31.RU</a> — Все права защищены
   </footer>
 </div>
 
@@ -1635,7 +1635,7 @@
           <p>Обработка и анализ файловых путей</p>
         </div>
 
-        <div class="program-card" onclick="downloadProgram('JumpListExplore')">
+        <div class="program-card" onclick="downloadProgram('JumpListExplorer')">
           <div class="download-overlay">
             <svg class="dl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
             <span class="dl-label">Скачать</span>
@@ -1745,7 +1745,7 @@
       <div class="sig-card">
         <h3>Everything — Запрос 6: Memesense</h3>
         <div class="sig-desc">Обнаружение Memesense по характерной строке запроса уровня привилегий в манифесте .exe файла.</div>
-        <button class="copy-btn" onclick="copyText(this, 'size:10mb-20mb ext:exe utf8content:\"<ms_asmv1:requestedExecutionLeve\"')">Копировать</button>
+        <button class="copy-btn" onclick="copyText(this, rawStrings.q6memesense)">Копировать</button>
         <div class="sig-code">size:10mb-20mb ext:exe utf8content:"&lt;ms_asmv1:requestedExecutionLeve"</div>
       </div>
 
@@ -1754,7 +1754,7 @@
       <div class="sig-card">
         <h3>Everything — Запрос 7: Fatality</h3>
         <div class="sig-desc">Поиск по размеру, схеме сборки asm.v1 и требованию прав администратора (requireAdministrator) в манифесте. Характерная комбинация для Fatality.</div>
-        <button class="copy-btn" onclick="copyText(this, 'ext:exe size:3mb-7mb utf8content:\"urn:schemas-microsoft-com:asm.v1\" \"requestedExecutionLevel\" \"requireAdministrator\" \"</supportedOS>\"')">Копировать</button>
+        <button class="copy-btn" onclick="copyText(this, rawStrings.q7fatality)">Копировать</button>
         <div class="sig-code">ext:exe size:3mb-7mb utf8content:"urn:schemas-microsoft-com:asm.v1" "requestedExecutionLevel" "requireAdministrator" "&lt;/supportedOS&gt;"</div>
       </div>
 
@@ -1763,7 +1763,7 @@
       <div class="sig-card">
         <h3>Everything — Запрос 8: Midnight / Xone / Nixware / Spurdo</h3>
         <div class="sig-desc">Альтернативный поиск тех же клиентов по уникальной строке <code style="color:#8888aa">Wzo8f9:GPd_C[</code> непосредственно в теле .exe файла.</div>
-        <button class="copy-btn" onclick="copyText(this, 'ext:exe size:3mb-7mb utf8content:\"Wzo8f9:GPd_C[\"')">Копировать</button>
+        <button class="copy-btn" onclick="copyText(this, rawStrings.q8spurdo)">Копировать</button>
         <div class="sig-code">ext:exe size:3mb-7mb utf8content:"Wzo8f9:GPd_C["</div>
       </div>
 
@@ -1771,7 +1771,7 @@
   </div>
 
   <footer>
-    © 2024 <a href="https://cs2bgd31.ru/">CS2BGD31.RU</a> — Все права защищены
+    © 2025 <a href="https://cs2bgd31.ru/">CS2BGD31.RU</a> — Все права защищены
   </footer>
 </div>
 
@@ -2042,7 +2042,7 @@
   </div>
 
   <footer>
-    © 2024 <a href="https://cs2bgd31.ru/">CS2BGD31.RU</a> — Все права защищены
+    © 2025 <a href="https://cs2bgd31.ru/">CS2BGD31.RU</a> — Все права защищены
   </footer>
 </div>
 
@@ -2131,7 +2131,7 @@
       if (show) visible++;
     });
     if (noRes) noRes.style.display = (visible === 0 && q) ? 'block' : 'none';
-    if (cnt) cnt.textContent = visible + ' ' + (visible === 1 ? 'программа' : visible < 5 ? 'программы' : 'программ');
+    if (cnt) cnt.textContent = q ? (visible + ' ' + (visible === 1 ? 'программа' : visible < 5 ? 'программы' : 'программ')) : '18 программ';
   }
 
   // ══ NAV SCROLL ══
@@ -2144,6 +2144,9 @@
     midnight: `size:10mb-24mb ext:exe utf8content:"xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'>"`,
     csrss: String.raw`^(([a-zA-Z]{1}:|\\)(\\[^\\/<>:\|\*\?"]+)+\.[^\\/<>:\|]{3,4})`,
     q4deep: `<<ext:exe size:9mb-15mb utf8content:"Gentee Launcher">|<ext:exe size:9mb-16mb utf8content:"X PROGRAMM LTD1">|<ext:exe size:16mb-24mb utf8content:"7+InZ[^0">|<ext:exe size:10mb-24mb utf8content:"t$PfD)t$PL">|<ext:exe size:4mb-10mb utf8content:"KDMapper">|<ext:exe size:0.3mb-3mb utf8content:"DragonBurn">|<ext:exe size:2mb-8mb utf8content:"D:/Projects/touchskins">|<ext:exe size:43mb-60mb utf8content:"vac_module_ok">|<ext:exe size:600mb-700mb utf8content:"SharkHack">|<ext:exe size:20mb-24mb utf8content:"l|rlK!tT1p">|<ext:exe size:15mb-24mb utf8content:"MIDNIGHTLoader">|<ext:exe size:10mb-16mb utf8content:"&Lp6U&XM}3ZQ*^[Hp)">|<ext:exe size:2mb-8mb utf8content:"j_M6:F\\">|<ext:exe size:100kb-400kb utf16content:"swiftsoft">|<ext:exe size:20mb-24mb utf8content:"exloader">|<ext:exe size:13mb-23mb utf8content:"ZI>vZ@y\\#O%~">|<ext:exe size:200kb-400kb utf16content:"com.mvploader">|<ext:exe size:3mb-7mb utf8content:"Wzo8f9:GPd_C[">>`,
+    q6memesense: `size:10mb-20mb ext:exe utf8content:"<ms_asmv1:requestedExecutionLeve"`,
+    q7fatality: `ext:exe size:3mb-7mb utf8content:"urn:schemas-microsoft-com:asm.v1" "requestedExecutionLevel" "requireAdministrator" "</supportedOS>"`,
+    q8spurdo: `ext:exe size:3mb-7mb utf8content:"Wzo8f9:GPd_C["`,
   };
 
   function showPage(page, clickedLink) {
@@ -2163,8 +2166,13 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (page === 'home') {
       setTimeout(startCounters, 300);
-      const canvas = document.getElementById('particles-canvas');
-      if (canvas) { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+      setTimeout(() => {
+        const canvas = document.getElementById('particles-canvas');
+        if (canvas) {
+          canvas.width = canvas.offsetWidth || window.innerWidth;
+          canvas.height = canvas.offsetHeight || window.innerHeight;
+        }
+      }, 50);
     }
   }
 
