@@ -1318,6 +1318,482 @@
     .hero-visual { display: none; }
     .nav-links a span.nav-label { display: none; }
   }
+
+  /* ══ PAGE LOGS ══ */
+  #page-logs { display: none; padding-top: 58px; }
+
+  .logs-hero {
+    text-align: center;
+    padding: 68px 32px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .logs-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 280px;
+    background: radial-gradient(ellipse, rgba(201,26,184,0.09) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .logs-hero h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.7s ease both;
+  }
+  .logs-hero h1 span { color: var(--accent); }
+  .logs-hero p {
+    color: var(--muted);
+    font-size: 0.88rem;
+    animation: fadeUp 0.7s ease 0.1s both;
+    position: relative; z-index: 1;
+    max-width: 480px;
+    margin: 10px auto 0;
+    line-height: 1.7;
+  }
+
+  .logs-section {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  /* Status card */
+  .log-status-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    transition: border-color 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .log-status-card.ready { border-color: rgba(71,184,255,0.3); }
+  .log-status-card.done  { border-color: rgba(201,26,184,0.35); box-shadow: 0 0 20px rgba(201,26,184,0.06); }
+  .log-status-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .log-status-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .log-status-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Progress */
+  .log-progress-wrap {
+    height: 2px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    display: none;
+  }
+  .log-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent3));
+    border-radius: 99px;
+    width: 0%;
+    transition: width 0.1s;
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  /* Stats row */
+  .log-stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .log-stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 14px 18px;
+    animation: fadeUp 0.5s ease 0.05s both;
+    transition: border-color 0.2s;
+  }
+  .log-stat:hover { border-color: rgba(201,26,184,0.18); }
+  .log-stat-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .log-stat-val {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+  .log-stat-val.accent { color: var(--accent); }
+
+  /* Controls */
+  .log-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.5s ease 0.08s both;
+  }
+  .log-search-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+  .log-search-ico {
+    position: absolute;
+    left: 13px; top: 50%;
+    transform: translateY(-50%);
+    width: 14px; height: 14px;
+    color: var(--muted);
+    pointer-events: none;
+  }
+  .log-search-input {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 9px;
+    padding: 10px 14px 10px 36px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.84rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .log-search-input:focus {
+    border-color: rgba(201,26,184,0.35);
+    box-shadow: 0 0 0 3px rgba(201,26,184,0.07);
+  }
+  .log-search-input::placeholder { color: var(--muted); }
+
+  .log-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 9px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .log-btn:hover { background: rgba(255,255,255,0.07); color: var(--text); border-color: rgba(255,255,255,0.13); }
+  .log-btn:active { transform: scale(0.97); }
+  .log-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .log-btn.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  .log-btn.primary:hover { background: var(--accent3); border-color: var(--accent3); }
+  .log-btn.danger { color: #ff4466; border-color: rgba(255,40,80,0.2); }
+  .log-btn.danger:hover { background: rgba(255,40,80,0.08); }
+
+  /* Filter tabs */
+  .log-filter-tabs {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    animation: fadeUp 0.5s ease 0.1s both;
+  }
+  .log-ftab {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .log-ftab:hover { border-color: rgba(201,26,184,0.25); color: var(--text); }
+  .log-ftab.active { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 0 14px var(--accent-glow); }
+
+  /* Results box */
+  .log-results-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .log-results-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .log-results-label::after {
+    content: '';
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, rgba(201,26,184,0.3), transparent);
+  }
+  .log-results-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    overflow: hidden;
+    min-height: 200px;
+    animation: fadeUp 0.5s ease 0.12s both;
+  }
+
+  /* Table */
+  .log-tbl-wrap { overflow-x: auto; }
+  .log-tbl-wrap::-webkit-scrollbar { height: 4px; }
+  .log-tbl-wrap::-webkit-scrollbar-track { background: var(--bg); }
+  .log-tbl-wrap::-webkit-scrollbar-thumb { background: rgba(201,26,184,0.3); border-radius: 2px; }
+
+  .log-table { width: 100%; border-collapse: collapse; font-size: 0.79rem; }
+  .log-table thead tr {
+    background: rgba(0,0,0,0.2);
+    border-bottom: 1px solid var(--border);
+  }
+  .log-table thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .log-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    transition: background 0.15s;
+    animation: fadeUp 0.15s ease both;
+  }
+  .log-table tbody tr:last-child { border-bottom: none; }
+  .log-table tbody tr:hover { background: rgba(255,255,255,0.025); }
+
+  .log-table td {
+    padding: 9px 14px;
+    vertical-align: top;
+    font-family: 'Courier New', monospace;
+    color: #8888aa;
+    line-height: 1.5;
+  }
+  .log-table td.col-line {
+    color: var(--muted);
+    font-size: 0.72rem;
+    white-space: nowrap;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .log-table td.col-name {
+    color: var(--text);
+    word-break: break-all;
+    min-width: 180px;
+  }
+  .log-table td.col-usn { font-size: 0.72rem; white-space: nowrap; }
+  .log-table td.col-date { white-space: nowrap; font-size: 0.72rem; }
+  .log-table td.col-reason { font-size: 0.72rem; min-width: 140px; }
+  .log-table td.col-dir {
+    font-size: 0.72rem;
+    color: var(--accent3);
+    word-break: break-all;
+    min-width: 160px;
+  }
+  .log-table td.col-tag { white-space: nowrap; }
+  .log-table mark {
+    background: rgba(201,26,184,0.18);
+    color: var(--accent3);
+    border-radius: 2px;
+    padding: 0 2px;
+    font-weight: 700;
+  }
+
+  /* Log type badges */
+  .log-tag {
+    display: inline-block;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .ltag-red    { background: rgba(255,40,80,0.12);   color: #ff6080; border-color: rgba(255,40,80,0.25); }
+  .ltag-pink   { background: rgba(201,26,184,0.12);  color: var(--accent3); border-color: rgba(201,26,184,0.25); }
+  .ltag-blue   { background: rgba(50,150,255,0.1);   color: #66aaff; border-color: rgba(50,150,255,0.25); }
+  .ltag-purple { background: rgba(160,80,255,0.1);   color: #bb88ff; border-color: rgba(160,80,255,0.25); }
+  .ltag-green  { background: rgba(74,222,128,0.1);   color: #4ade80; border-color: rgba(74,222,128,0.2); }
+  .ltag-gray   { background: rgba(255,255,255,0.06); color: var(--muted); border-color: var(--border); }
+
+  /* Empty state */
+  .log-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 70px 20px;
+    color: var(--muted);
+    font-size: 0.84rem;
+    text-align: center;
+  }
+  .log-empty svg { width: 38px; height: 38px; opacity: 0.25; }
+  .log-empty-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #555570;
+    letter-spacing: 0.04em;
+  }
+
+  /* Pagination */
+  .log-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.15);
+  }
+  .log-page-info {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .log-page-btns { display: flex; gap: 6px; }
+  .log-page-btn {
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.15s;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+  }
+  .log-page-btn:hover:not([disabled]) { background: var(--card-hover); color: var(--white); border-color: rgba(201,26,184,0.25); }
+  .log-page-btn[disabled] { opacity: 0.3; cursor: default; pointer-events: none; }
+
+  /* DB section */
+  .log-db-section {
+    margin-top: 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease 0.15s both;
+  }
+  .log-db-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    background: rgba(0,0,0,0.15);
+    transition: background 0.2s;
+  }
+  .log-db-hdr:hover { background: rgba(255,255,255,0.02); }
+  .log-db-hdr-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .log-db-hdr-right { display: flex; align-items: center; gap: 10px; }
+  .log-db-count {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .log-db-arrow {
+    width: 14px; height: 14px;
+    color: var(--muted);
+    transition: transform 0.25s ease;
+  }
+  .log-db-body { display: none; padding: 18px 20px; }
+  .log-db-body.open { display: block; }
+  .log-cat-group { margin-bottom: 18px; }
+  .log-cat-group:last-child { margin-bottom: 0; }
+  .log-cat-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .log-cat-name::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201,26,184,0.2), transparent);
+  }
+  .log-kw-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .log-kw-pill {
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    padding: 2px 9px;
+    border-radius: 3px;
+    cursor: default;
+  }
+
+  @media (max-width: 700px) {
+    .log-stats-row { grid-template-columns: repeat(3,1fr); gap: 6px; }
+    .log-stat-val { font-size: 1.5rem; }
+  }
 </style>
 </head>
 <body>
@@ -1350,6 +1826,10 @@
     <li><a href="#" id="nav-guide" onclick="showPage('guide',this);return false;">
       <svg class="nav-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M5 5h6M5 8h6M5 11h4"/></svg>
       Руководство
+    </a></li>
+    <li><a href="#" id="nav-logs" onclick="showPage('logs',this);return false;">
+      <svg class="nav-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v10H3zM6 6h4M6 9h4M6 12h2"/><path d="M9 1v4M7 1v4"/></svg>
+      Проверка логов
     </a></li>
   </ul>
 </nav>
@@ -2046,7 +2526,133 @@
   </footer>
 </div>
 
+<!-- ══ LOGS PAGE ══ -->
+<div id="page-logs">
+  <div class="logs-hero">
+    <h1>Проверка <span>логов</span></h1>
+    <p>Вставь содержимое JournalTrace — система автоматически найдёт совпадения с базой запрещённого ПО.</p>
+  </div>
+
+  <div class="logs-section">
+
+    <!-- STATUS -->
+    <div class="log-status-card" id="logStatusCard">
+      <div class="log-status-label">BGD CHECKER — JOURNAL TRACE</div>
+      <div class="log-status-title" id="logStatusTitle">Лог не вставлен</div>
+      <div class="log-status-sub" id="logStatusSub">Нажми «Вставить» или Ctrl+V в любом месте страницы</div>
+    </div>
+    <div class="log-progress-wrap" id="logProgressWrap">
+      <div class="log-progress-bar" id="logProgressBar"></div>
+    </div>
+
+    <!-- STATS -->
+    <div class="log-stats-row">
+      <div class="log-stat">
+        <div class="log-stat-label">Совпадений</div>
+        <div class="log-stat-val accent" id="logStatMatches">0</div>
+      </div>
+      <div class="log-stat">
+        <div class="log-stat-label">Ключевых слов</div>
+        <div class="log-stat-val" id="logStatKw">0</div>
+      </div>
+      <div class="log-stat">
+        <div class="log-stat-label">Строк найдено</div>
+        <div class="log-stat-val" id="logStatLines">0</div>
+      </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="log-controls">
+      <div class="log-search-wrap">
+        <svg class="log-search-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6.5" cy="6.5" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+        <input type="text" class="log-search-input" id="logSearchInput" placeholder="Поиск по результатам..." oninput="logApplyFilter()" autocomplete="off">
+      </div>
+      <button class="log-btn" onclick="logPaste()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Вставить
+      </button>
+      <button class="log-btn primary" onclick="logRunSearch()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        Поиск
+      </button>
+      <button class="log-btn danger" onclick="logClear()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+        Очистить
+      </button>
+      <button class="log-btn" onclick="logCopyResults()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Копировать
+      </button>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="log-filter-tabs">
+      <button class="log-ftab active" onclick="logSetFilter('all',this)">Все</button>
+      <button class="log-ftab" onclick="logSetFilter('Clients',this)">Клиенты</button>
+      <button class="log-ftab" onclick="logSetFilter('Injectors',this)">Инжекторы</button>
+      <button class="log-ftab" onclick="logSetFilter('Macros',this)">Макросы</button>
+      <button class="log-ftab" onclick="logSetFilter('Radar',this)">Радар</button>
+      <button class="log-ftab" onclick="logSetFilter('SkinChangers',this)">Скин-чей</button>
+      <button class="log-ftab" onclick="logSetFilter('Artifacts',this)">Артефакты</button>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="log-results-hdr">
+      <div class="log-results-label">Результаты</div>
+    </div>
+    <div class="log-results-box" id="logResultsBox">
+      <div class="log-empty" id="logEmpty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        <div class="log-empty-title">Совпадений пока нет</div>
+        <div>Вставь лог JournalTrace и нажми «Поиск»</div>
+      </div>
+      <div id="logTableWrap" style="display:none">
+        <div class="log-tbl-wrap">
+          <table class="log-table">
+            <thead>
+              <tr>
+                <th>Строка</th>
+                <th>USN</th>
+                <th>Имя файла</th>
+                <th>Дата</th>
+                <th>Причина</th>
+                <th>ID директории</th>
+                <th>Тип</th>
+              </tr>
+            </thead>
+            <tbody id="logTbody"></tbody>
+          </table>
+        </div>
+        <div class="log-pagination" id="logPagination">
+          <span class="log-page-info" id="logPageInfo"></span>
+          <div class="log-page-btns">
+            <button class="log-page-btn" id="logPrevBtn" onclick="logChangePage(-1)">←</button>
+            <button class="log-page-btn" id="logNextBtn" onclick="logChangePage(1)">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DB -->
+    <div class="log-db-section">
+      <div class="log-db-hdr" onclick="logToggleDB()">
+        <div class="log-db-hdr-title">База ключевых слов</div>
+        <div class="log-db-hdr-right">
+          <span class="log-db-count" id="logDbCount"></span>
+          <svg class="log-db-arrow" id="logDbArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="log-db-body" id="logDbBody"></div>
+    </div>
+
+    <footer style="margin-top:44px">
+      © 2025 <a href="https://cs2bgd31.ru/">CS2BGD31.RU</a> — Все права защищены
+    </footer>
+  </div>
+</div>
+
 <script>
+
   // ══ PARTICLES ══
   (function() {
     const canvas = document.getElementById('particles-canvas');
@@ -2150,17 +2756,17 @@
   };
 
   function showPage(page, clickedLink) {
-    ['home','main','guide'].forEach(p => {
+    ['home','main','guide','logs'].forEach(p => {
       const el = document.getElementById('page-' + p);
-      el.style.display = 'none';
-      el.classList.remove('page-enter');
+      if(el){el.style.display='none';el.classList.remove('page-enter');}
     });
     const target = document.getElementById('page-' + page);
+    if(!target)return;
     target.style.display = page === 'home' ? 'flex' : 'block';
     void target.offsetWidth;
     target.classList.add('page-enter');
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    const navIds = { home: 'nav-home', main: 'nav-main', guide: 'nav-guide' };
+    const navIds = { home: 'nav-home', main: 'nav-main', guide: 'nav-guide', logs: 'nav-logs' };
     const navLink = (clickedLink && clickedLink.closest && clickedLink.closest('.nav-links')) ? clickedLink : document.getElementById(navIds[page]);
     if (navLink) navLink.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2256,6 +2862,278 @@
       navigator.clipboard.writeText(text).then(onSuccess).catch(() => { doFallback(); onSuccess(); });
     } else { doFallback(); onSuccess(); }
   }
+
+/* ══════════════════════════════════════════════════
+   BGD CHECKER — Проверка логов CS2/CS:GO
+   Все функции объявлены строго в порядке использования
+══════════════════════════════════════════════════ */
+
+/* ── Утилиты ─────────────────────────────────── */
+function logEsc(s){
+  if(!s)return'';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function logEscRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function logHlKw(text,kw,q){
+  var t=text;
+  if(kw)t=t.replace(new RegExp(logEscRe(logEsc(kw)),'gi'),function(s){return'<mark>'+s+'</mark>';});
+  if(q&&q!==kw)t=t.replace(new RegExp(logEscRe(logEsc(q)),'gi'),function(s){return'<mark>'+s+'</mark>';});
+  return t;
+}
+
+/* ── База: только реальные CS2/CS:GO читы ────── */
+var LOG_DB={
+  Clients:{tag:'ltag-red',label:'КЛИЕНТ',words:[
+    'skeet','neverlose','aimware','onetap','fatality','nixware','gamesense',
+    'legendware','osiris','ev0lve','nonagon','sharkhack','memesense','airflow',
+    'passathook','necrum','neoxa7','neoxahack','w1nner','victoria','weave',
+    'aimmy','undetek','invision','spurdo','chieftain','plague','vapehook',
+    'smurfwrecker','iniuria','yeahnot','hauntedproject','phoenixhack',
+    'onebyteradar','onebyte','dexterion','basicmultihack','pudra','icheat',
+    'sneakys','krazyhack','muhprime','drcheats','rootcheat','aeonix','zedt.pw',
+    'devcore','legifard','katebot','imxnoobx','ekknod','warware','en1gma',
+    'primordial','pphud','espd2x','valthrun','xone','interium','extrimhack',
+    'exhack','neverkernel','vredux','mason','aquila','luno','fecurity','cartel',
+    'tkazer','naim','pellix','pussycat','sapphire','interwebz','paradise',
+    'xenon','easysp','ghostware','aimstar','cs2.glow','doomxtf','reborn',
+    'semirage','insanitycheats','rf-cheats','anyx.gg','axios','predator'
+  ]},
+  Injectors:{tag:'ltag-pink',label:'ИНЖЕКТОР',words:[
+    'injector_helper','exloader','webview2loader','mvploader','com.mvploader',
+    'swiftsoft','com.swiftsoft','kdmapper','dragonburn','midnightloader',
+    'drv_mapper','manualmap','manualmapping'
+  ]},
+  Macros:{tag:'ltag-purple',label:'МАКРОС',words:[
+    'novamacro','promacro','botmek','topmacro','ggmacro','onemacro',
+    'axios-macro','aimcop','softhub','proext'
+  ]},
+  Radar:{tag:'ltag-blue',label:'РАДАР',words:[
+    'webradar','esp-radar'
+  ]},
+  SkinChangers:{tag:'ltag-green',label:'СКИН-ЧЕЙ',words:[
+    'skinchanger','inventorychanger','knifechanger','glovechanger'
+  ]},
+  Artifacts:{tag:'ltag-gray',label:'АРТЕФАКТ',words:[
+    'injector_helper.x64.exe','injector_helper.x32.exe','webview2loader.dll',
+    'schinese.bin','russian.bin','esp-icons.ttf','message-bus.bin',
+    'nl.log','nl_cs2.log','token.ms','vac_module_ok','d:/projects/touchskins','cs2bgd31'
+  ]}
+};
+
+/* Плоский список для быстрого поиска */
+var LOG_KW=[];
+Object.keys(LOG_DB).forEach(function(cat){
+  var d=LOG_DB[cat];
+  d.words.forEach(function(w){LOG_KW.push({kw:w.toLowerCase(),cat:cat,tag:d.tag,label:d.label});});
+});
+
+/* ── Состояние ──────────────────────────────── */
+var logRaw='',logLines=[],logAllMatches=[],logFiltered=[];
+var logFilter='all',logPage=1,logSearching=false;
+var LOG_PAGE=100;
+
+/* ── Init ───────────────────────────────────── */
+window.addEventListener('DOMContentLoaded',function(){
+  /* Рендер базы */
+  var total=0,html='';
+  Object.keys(LOG_DB).forEach(function(cat){
+    var d=LOG_DB[cat];
+    total+=d.words.length;
+    html+='<div class="log-cat-group"><div class="log-cat-name">'+cat+' — '+d.words.length+' слов</div><div class="log-kw-grid">';
+    html+=d.words.map(function(w){return'<span class="log-kw-pill log-tag '+d.tag+'">'+logEsc(w)+'</span>';}).join('');
+    html+='</div></div>';
+  });
+  var el=document.getElementById('logDbBody');if(el)el.innerHTML=html;
+  var el2=document.getElementById('logDbCount');if(el2)el2.textContent=total+' слов';
+
+  /* Ctrl+V глобально — только когда открыта вкладка логов */
+  document.addEventListener('paste',function(e){
+    var page=document.getElementById('page-logs');
+    if(!page||page.style.display==='none'||page.style.display==='')return;
+    if(document.activeElement&&document.activeElement.id==='logSearchInput')return;
+    var txt=e.clipboardData&&e.clipboardData.getData('text');
+    if(txt&&txt.trim())logSetLog(txt);
+  });
+});
+
+/* ── Лог ────────────────────────────────────── */
+function logSetLog(txt){
+  logRaw=txt;logLines=txt.split('\n');
+  logSetStatus('ready','Лог готов к проверке',
+    txt.length.toLocaleString('ru')+' символов — нажми «Поиск»');
+  document.getElementById('logStatusCard').className='log-status-card ready';
+  showToast('Лог вставлен! Нажми «Поиск»');
+}
+function logPaste(){
+  navigator.clipboard.readText().then(function(txt){
+    if(txt&&txt.trim())logSetLog(txt);
+    else showToast('Буфер обмена пуст');
+  }).catch(function(){showToast('Нажми Ctrl+V в любом месте страницы');});
+}
+function logClear(){
+  logRaw='';logLines=[];logAllMatches=[];logFiltered=[];logPage=1;
+  logSetStatus('','Лог не вставлен','Нажми «Вставить» или Ctrl+V в любом месте страницы');
+  document.getElementById('logStatusCard').className='log-status-card';
+  ['logStatMatches','logStatKw','logStatLines'].forEach(function(id){document.getElementById(id).textContent='0';});
+  logShowEmpty();logHideProgress();
+}
+function logSetStatus(t,title,sub){
+  document.getElementById('logStatusTitle').textContent=title;
+  document.getElementById('logStatusSub').textContent=sub;
+}
+
+/* ── Поиск (чанки 800 строк, не зависает) ───── */
+function logRunSearch(){
+  if(logSearching)return;
+  if(!logRaw.trim()){showToast('Сначала вставь лог');return;}
+  logSearching=true;logAllMatches=[];logFiltered=[];logPage=1;
+  document.getElementById('logSearchInput').value='';
+  logFilter='all';
+  document.querySelectorAll('.log-ftab').forEach(function(t,i){t.classList.toggle('active',i===0);});
+  logShowProgress();
+  var lines=logLines,total=lines.length,isTab=logDetectTabular(lines),i=0;
+  function next(){
+    var end=Math.min(i+800,total);
+    for(;i<end;i++){
+      var line=lines[i];if(!line||!line.trim())continue;
+      var low=line.toLowerCase();
+      for(var k=0;k<LOG_KW.length;k++){
+        if(low.indexOf(LOG_KW[k].kw)!==-1){
+          logAllMatches.push({lineNum:i+1,raw:line,kw:LOG_KW[k].kw,
+            cat:LOG_KW[k].cat,tag:LOG_KW[k].tag,label:LOG_KW[k].label,
+            parsed:isTab?logParseUSN(line):null});
+          break;
+        }
+      }
+    }
+    document.getElementById('logProgressBar').style.width=Math.round(i/total*100)+'%';
+    if(i<total)setTimeout(next,0);else logFinish();
+  }
+  setTimeout(next,0);
+}
+
+function logDetectTabular(lines){
+  var h=0;
+  for(var i=0;i<Math.min(lines.length,30);i++){
+    if(lines[i].indexOf('\t')!==-1||/\s{3,}/.test(lines[i]))h++;
+  }
+  return h>=5;
+}
+
+function logParseUSN(line){
+  var cols=line.indexOf('\t')!==-1
+    ?line.split('\t').map(function(c){return c.trim();})
+    :line.split(/\s{2,}/).map(function(c){return c.trim();}).filter(Boolean);
+  if(cols.length<3)return null;
+  var usn='',fname='',date='',reason='',dir='';
+  var dr=/\d{2}\.\d{2}\.\d{4}|\d{4}-\d{2}-\d{2}/;
+  if(/^\d{10,}$/.test(cols[0])){
+    usn=cols[0];fname=cols[1]||'';
+    for(var i=2;i<cols.length;i++){
+      if(dr.test(cols[i])){date=cols[i];reason=cols.slice(i+1,cols.length-1).join(' ');dir=cols[cols.length-1];break;}
+    }
+  }else{
+    fname=cols[0];
+    for(var i=1;i<cols.length;i++){
+      if(dr.test(cols[i])){date=cols[i];reason=cols.slice(i+1,cols.length-1).join(' ');dir=cols[cols.length-1];break;}
+    }
+  }
+  return{usn:usn,fname:fname,date:date,reason:reason,dir:dir};
+}
+
+function logFinish(){
+  logSearching=false;logHideProgress();
+  var uniq={};logAllMatches.forEach(function(m){uniq[m.kw]=1;});
+  var uc=Object.keys(uniq).length;
+  document.getElementById('logStatMatches').textContent=logAllMatches.length.toLocaleString('ru');
+  document.getElementById('logStatKw').textContent=uc.toLocaleString('ru');
+  document.getElementById('logStatLines').textContent=logAllMatches.length.toLocaleString('ru');
+  document.getElementById('logStatusCard').className='log-status-card done';
+  logSetStatus('done','Поиск завершён',
+    'Найдено '+logAllMatches.length.toLocaleString('ru')+' совпадений по '+uc+' ключевым словам');
+  logApplyFilter();
+}
+
+/* ── Фильтр ─────────────────────────────────── */
+function logSetFilter(cat,el){
+  document.querySelectorAll('.log-ftab').forEach(function(t){t.classList.remove('active');});
+  el.classList.add('active');logFilter=cat;logPage=1;logApplyFilter();
+}
+function logApplyFilter(){
+  var q=(document.getElementById('logSearchInput').value||'').toLowerCase().trim();
+  logFiltered=logAllMatches.filter(function(m){
+    return(logFilter==='all'||m.cat===logFilter)&&
+      (!q||m.raw.toLowerCase().indexOf(q)!==-1||m.kw.indexOf(q)!==-1);
+  });
+  logPage=1;logRenderTable();
+}
+
+/* ── Рендер таблицы ─────────────────────────── */
+function logRenderTable(){
+  if(!logFiltered.length){logShowEmpty();return;}
+  document.getElementById('logEmpty').style.display='none';
+  document.getElementById('logTableWrap').style.display='block';
+  var total=Math.ceil(logFiltered.length/LOG_PAGE);
+  if(logPage>total)logPage=total;
+  var slice=logFiltered.slice((logPage-1)*LOG_PAGE,logPage*LOG_PAGE);
+  var q=(document.getElementById('logSearchInput').value||'').toLowerCase().trim();
+  var html='';
+  for(var i=0;i<slice.length;i++){
+    var m=slice[i];
+    html+='<tr style="animation-delay:'+Math.min(i*4,200)+'ms">';
+    html+='<td class="col-line">Строка&nbsp;'+m.lineNum+'</td>';
+    if(m.parsed){
+      html+='<td class="col-usn">'+logEsc(m.parsed.usn)+'</td>';
+      html+='<td class="col-name">'+logHlKw(logEsc(m.parsed.fname||m.raw),m.kw,q)+'</td>';
+      html+='<td class="col-date">'+logEsc(m.parsed.date)+'</td>';
+      html+='<td class="col-reason">'+logEsc(m.parsed.reason)+'</td>';
+      html+='<td class="col-dir">'+logEsc(m.parsed.dir)+'</td>';
+    }else{
+      html+='<td class="col-usn">—</td>';
+      html+='<td class="col-name" colspan="4">'+logHlKw(logEsc(m.raw),m.kw,q)+'</td>';
+      html+='<td class="col-dir"></td>';
+    }
+    html+='<td class="col-tag"><span class="log-tag '+m.tag+'">'+m.label+'</span></td>';
+    html+='</tr>';
+  }
+  document.getElementById('logTbody').innerHTML=html;
+  var pg=document.getElementById('logPagination');
+  if(total>1){
+    pg.style.display='flex';
+    document.getElementById('logPageInfo').textContent=logPage+' / '+total+' ('+logFiltered.length.toLocaleString('ru')+')';
+    document.getElementById('logPrevBtn').disabled=logPage<=1;
+    document.getElementById('logNextBtn').disabled=logPage>=total;
+  }else{pg.style.display='none';}
+}
+
+function logChangePage(d){
+  var total=Math.ceil(logFiltered.length/LOG_PAGE);
+  logPage=Math.max(1,Math.min(total,logPage+d));
+  logRenderTable();
+  document.getElementById('logResultsBox').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function logShowEmpty(){
+  document.getElementById('logEmpty').style.display='flex';
+  document.getElementById('logTableWrap').style.display='none';
+}
+function logCopyResults(){
+  if(!logFiltered.length){showToast('Нечего копировать');return;}
+  var txt=logFiltered.map(function(m){return'['+m.cat+'] Строка '+m.lineNum+': '+m.raw;}).join('\n');
+  navigator.clipboard.writeText(txt).then(function(){showToast('Скопировано!');}).catch(function(){showToast('Ошибка');});
+}
+function logShowProgress(){
+  document.getElementById('logProgressWrap').style.display='block';
+  document.getElementById('logProgressBar').style.width='0%';
+}
+function logHideProgress(){
+  setTimeout(function(){document.getElementById('logProgressWrap').style.display='none';},400);
+}
+var logDbOpen=false;
+function logToggleDB(){
+  logDbOpen=!logDbOpen;
+  document.getElementById('logDbBody').classList.toggle('open',logDbOpen);
+  document.getElementById('logDbArrow').style.transform=logDbOpen?'rotate(180deg)':'';
+}
 </script>
 
 </body>
