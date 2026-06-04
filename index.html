@@ -2591,7 +2591,6 @@
       <button class="log-ftab" onclick="logSetFilter('Clients',this)">Клиенты</button>
       <button class="log-ftab" onclick="logSetFilter('Injectors',this)">Инжекторы</button>
       <button class="log-ftab" onclick="logSetFilter('Macros',this)">Макросы</button>
-      <button class="log-ftab" onclick="logSetFilter('Radar',this)">Радар</button>
       <button class="log-ftab" onclick="logSetFilter('SkinChangers',this)">Скин-чей</button>
       <button class="log-ftab" onclick="logSetFilter('Artifacts',this)">Артефакты</button>
     </div>
@@ -2881,51 +2880,177 @@ function logHlKw(text,kw,q){
   return t;
 }
 
-/* ── База: только реальные CS2/CS:GO читы ────── */
+/* ── База ключевых слов — ТОЛЬКО уникальные имена CS2/CS:GO читов ── */
+/*
+   Правила отбора слова в базу:
+   1. Слово НЕ встречается в путях/именах нормального Windows-ПО
+   2. Минимум 6 символов (короткие = ложные срабатывания)
+   3. Для клиентов — только имя самого чита, без общих слов
+   4. Артефакты — точные имена файлов с расширением
+*/
 var LOG_DB={
+
+  /* Чит-клиенты: имена достаточно уникальны чтобы не давать мусор */
   Clients:{tag:'ltag-red',label:'КЛИЕНТ',words:[
-    'skeet','neverlose','aimware','onetap','fatality','nixware','gamesense',
-    'legendware','osiris','ev0lve','nonagon','sharkhack','memesense','airflow',
-    'passathook','necrum','neoxa7','neoxahack','w1nner','victoria','weave',
-    'aimmy','undetek','invision','spurdo','chieftain','plague','vapehook',
-    'smurfwrecker','iniuria','yeahnot','hauntedproject','phoenixhack',
-    'onebyteradar','onebyte','dexterion','basicmultihack','pudra','icheat',
-    'sneakys','krazyhack','muhprime','drcheats','rootcheat','aeonix','zedt.pw',
-    'devcore','legifard','katebot','imxnoobx','ekknod','warware','en1gma',
-    'primordial','pphud','espd2x','valthrun','xone','interium','extrimhack',
-    'exhack','neverkernel','vredux','mason','aquila','luno','fecurity','cartel',
-    'tkazer','naim','pellix','pussycat','sapphire','interwebz','paradise',
-    'xenon','easysp','ghostware','aimstar','cs2.glow','doomxtf','reborn',
-    'semirage','insanitycheats','rf-cheats','anyx.gg','axios','predator'
+    'skeet.cc',
+    'neverlose',
+    'aimware',
+    'onetap',
+    'fatality',
+    'nixware',
+    'gamesense',
+    'legendware',
+    'ev0lve',
+    'nonagon',
+    'sharkhack',
+    'memesense',
+    'passathook',
+    'necrum',
+    'neoxa7',
+    'neoxahack',
+    'w1nner',
+    'smurfwrecker',
+    'iniuria',
+    'yeahnot',
+    'hauntedproject',
+    'phoenixhack',
+    'onebyteradar',
+    'onebyte',
+    'dexterion',
+    'basicmultihack',
+    'krazyhack',
+    'muhprime',
+    'drcheats',
+    'rootcheat',
+    'aeonix',
+    'zedt.pw',
+    'legifard',
+    'katebot',
+    'imxnoobx',
+    'ekknod',
+    'warware',
+    'en1gma',
+    'primordial',
+    'espd2x',
+    'valthrun',
+    'extrimhack',
+    'exhack',
+    'neverkernel',
+    'vredux',
+    'fecurity',
+    'tkazer',
+    'pellix',
+    'pussycat',
+    'interwebz',
+    'ghostware',
+    'aimstar',
+    'cs2.glow',
+    'doomxtf',
+    'semirage',
+    'insanitycheats',
+    'undetek',
+    'invision',
+    'spurdo',
+    'chieftain',
+    'vapehook',
+    'devcore',
+    'icheat',
+    'sneakys',
+    /* ── Новые из списка пользователя ── */
+    'xone',
+    'interium',
+    'mason',
+    'predator',
+    'aquila',
+    'luno',
+    'cartel',
+    'naim',
+    'sapphire',
+    'plague',
+    'reborn',
+    'osiris',
+    'pudra',
+    'weave',
+    'aimmy',
+    'paradise',
+    'xenon',
+    'easysp',
+    'pphud',
+    'hvh',
+    'webradar',
+    'aimbot',
+    's1mple',
+    'bhop',
+    'bunnyhop',
+    'avira',
+    'legit',
+    'cheat',
   ]},
+
+  /* Инжекторы: точные уникальные имена */
   Injectors:{tag:'ltag-pink',label:'ИНЖЕКТОР',words:[
-    'injector_helper','exloader','webview2loader','mvploader','com.mvploader',
-    'swiftsoft','com.swiftsoft','kdmapper','dragonburn','midnightloader',
-    'drv_mapper','manualmap','manualmapping'
+    'injector_helper',
+    'injector',
+    'exloader',
+    'webview2loader',
+    'com.mvploader',
+    'mvploader',
+    'com.swiftsoft',
+    'swiftsoft',
+    'kdmapper',
+    'dragonburn',
+    'midnightloader',
+    'drv_mapper',
+    'manualmapping'
   ]},
+
+  /* Макросы CS2 */
   Macros:{tag:'ltag-purple',label:'МАКРОС',words:[
-    'novamacro','promacro','botmek','topmacro','ggmacro','onemacro',
-    'axios-macro','aimcop','softhub','proext'
+    'novamacro',
+    'botmek',
+    'topmacro',
+    'ggmacro',
+    'onemacro',
+    'axios',
+    'axios-macro',
+    'aimcop',
+    'softhub',
+    'proext',
+    'promacro',
+    'macros',
   ]},
-  Radar:{tag:'ltag-blue',label:'РАДАР',words:[
-    'webradar','esp-radar'
-  ]},
+
+  /* Скин-чейнджеры: точные составные имена */
   SkinChangers:{tag:'ltag-green',label:'СКИН-ЧЕЙ',words:[
-    'skinchanger','inventorychanger','knifechanger','glovechanger'
+    'skinchanger',
+    'inventorychanger',
+    'knifechanger',
+    'glovechanger'
   ]},
+
+  /* Точные имена файлов-артефактов с расширением — не дают ложных срабатываний */
   Artifacts:{tag:'ltag-gray',label:'АРТЕФАКТ',words:[
-    'injector_helper.x64.exe','injector_helper.x32.exe','webview2loader.dll',
-    'schinese.bin','russian.bin','esp-icons.ttf','message-bus.bin',
-    'nl.log','nl_cs2.log','token.ms','vac_module_ok','d:/projects/touchskins','cs2bgd31'
+    'injector_helper.x64.exe',
+    'injector_helper.x32.exe',
+    'webview2loader.dll',
+    'esp-icons.ttf',
+    'message-bus.bin',
+    'nl_cs2.log',
+    'vac_module_ok',
+    'd:/projects/touchskins',
+    'nl.log'
   ]}
+
 };
 
-/* Плоский список для быстрого поиска */
+/* Плоский список для быстрого поиска — сортируем длинные слова первыми
+   чтобы более точное совпадение (injector_helper.x64.exe) побеждало короткое (injector_helper) */
 var LOG_KW=[];
 Object.keys(LOG_DB).forEach(function(cat){
   var d=LOG_DB[cat];
   d.words.forEach(function(w){LOG_KW.push({kw:w.toLowerCase(),cat:cat,tag:d.tag,label:d.label});});
 });
+LOG_KW.sort(function(a,b){return b.kw.length-a.kw.length;});
 
 /* ── Состояние ──────────────────────────────── */
 var logRaw='',logLines=[],logAllMatches=[],logFiltered=[];
@@ -2996,12 +3121,40 @@ function logRunSearch(){
     var end=Math.min(i+800,total);
     for(;i<end;i++){
       var line=lines[i];if(!line||!line.trim())continue;
-      var low=line.toLowerCase();
+      var parsed=isTab?logParseUSN(line):null;
+
+      /* ── Проверяем имя файла И путь ──────────────────────────────
+         Для табличных логов: fname = имя файла, dir = директория.
+         Для нетабличных: извлекаем имя файла и берём всю строку как путь.
+         Это убирает мусор из колонок «причина изменения» и прочего.
+      ──────────────────────────────────────────────────────────── */
+      var fnameRaw='', pathRaw='';
+      if(parsed&&parsed.fname){
+        fnameRaw=parsed.fname;
+        pathRaw=(parsed.dir||'')+(parsed.fname||'');
+      }else{
+        /* Нетабличный формат: берём последний сегмент пути после \ или /,
+           либо первый «токен» до пробела — это обычно имя файла */
+        var _slashM=line.match(/[^\\/\r\n]+$/);
+        var _firstM=line.match(/^[^\s\t\r\n]+/);
+        var _bySlash=_slashM?_slashM[0].trim():'';
+        var _byFirst=_firstM?_firstM[0].trim():'';
+        if(_bySlash&&_bySlash.length<_byFirst.length){
+          fnameRaw=_bySlash;
+        }else{
+          fnameRaw=_byFirst||line;
+        }
+        pathRaw=line;
+      }
+
+      /* Проверяем по имени файла + по пути, но НЕ по всей сырой строке */
+      var fnLow=fnameRaw.toLowerCase();
+      var pathLow=pathRaw.toLowerCase();
       for(var k=0;k<LOG_KW.length;k++){
-        if(low.indexOf(LOG_KW[k].kw)!==-1){
+        if(fnLow.indexOf(LOG_KW[k].kw)!==-1||pathLow.indexOf(LOG_KW[k].kw)!==-1){
           logAllMatches.push({lineNum:i+1,raw:line,kw:LOG_KW[k].kw,
             cat:LOG_KW[k].cat,tag:LOG_KW[k].tag,label:LOG_KW[k].label,
-            parsed:isTab?logParseUSN(line):null});
+            parsed:parsed});
           break;
         }
       }
