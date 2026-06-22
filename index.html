@@ -1800,7 +1800,7 @@
     display: flex;
     justify-content: center;
     gap: 4px;
-    margin: 28px auto 0;
+    margin: 28px auto 20px;
     background: rgba(255,255,255,0.03);
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -2154,6 +2154,18 @@
   }
   .ds-yt-link:hover { color: var(--accent); }
 
+  /* links in ds cards */
+  .ds-link {
+    color: var(--accent3);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,26,184,0.3);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .ds-link:hover {
+    color: var(--accent2);
+    border-bottom-color: var(--accent2);
+  }
+
   .ds-video-meta {
     display: flex;
     align-items: center;
@@ -2353,12 +2365,13 @@
   .ds-list li a { color: var(--accent); }
   .ds-list li code,
   .ds-steps li code {
-    color: var(--accent);
-    background: rgba(201,26,184,0.08);
-    border: 1px solid rgba(201,26,184,0.18);
-    padding: 1px 6px; border-radius: 4px;
+    color: #c8d8ff;
+    background: rgba(120,140,255,0.1);
+    border: 1px solid rgba(120,140,255,0.22);
+    padding: 2px 7px; border-radius: 4px;
     font-family: 'Courier New', monospace;
     font-size: 0.82em; white-space: nowrap;
+    letter-spacing: 0.01em;
   }
 
   /* Numbered steps */
@@ -3175,7 +3188,7 @@
             <div class="ds-part">
               <div class="ds-tag">Что проверяем</div>
               <ul class="ds-list">
-                <li><strong>Faceit:</strong> faceit.com/en/search — уровень, K/D, история матчей. Высокий Faceit при малых часах — красный флаг.</li>
+                <li><strong>Faceit:</strong> <a href="https://faceit.com/en/search" target="_blank" rel="noopener" class="ds-link">faceit.com/en/search</a> — уровень, K/D, история матчей. Высокий Faceit при малых часах — красный флаг.</li>
                 <li><strong>Steam-профиль:</strong> часы в CS2, дата создания, медали, публичность инвентаря.</li>
                 <li><strong>История банов:</strong> <a href="https://cs2bgd31.ru/check/" target="_blank" style="color:var(--accent)">cs2bgd31.ru/check/</a> — прошлые баны на проекте.</li>
               </ul>
@@ -3330,7 +3343,7 @@
               </ol>
             </div>
             <div class="ds-part">
-              <div class="ds-tag">Что подозрительно</div>
+              <div class="ds-tag">Что подозрительно?</div>
               <ul class="ds-list">
                 <li>Неизвестный процесс с <strong>активным исходящим трафиком</strong> во время игры</li>
                 <li>Процесс из <code>%temp%</code> или <code>AppData</code> с сетевой активностью</li>
@@ -3362,7 +3375,7 @@
               </ol>
             </div>
             <div class="ds-part">
-              <div class="ds-tag">Что подозрительно</div>
+              <div class="ds-tag">Что подозрительно?</div>
               <ul class="ds-list">
                 <li>Запуск <strong>неизвестных .exe</strong> непосредственно перед <code>cs2.exe</code></li>
                 <li>Доступ к <code>%temp%</code> или <code>AppData\Roaming</code> перед игрой</li>
@@ -3395,7 +3408,7 @@
               </ol>
             </div>
             <div class="ds-part">
-              <div class="ds-tag">Что подозрительно</div>
+              <div class="ds-tag">Что подозрительно?</div>
               <ul class="ds-list">
                 <li>Рандомно названные .exe из 8–16 случайных символов</li>
                 <li>Запуски из <code>%temp%</code> незадолго до игры</li>
@@ -3413,7 +3426,7 @@
           <div class="ds-ico-wrap">▶️</div>
           <div class="ds-info">
             <div class="ds-title">Executed / Cached Programs</div>
-            <div class="ds-sub">Системные логи фиксируют удалённый софт</div>
+            <div class="ds-sub">Системные логи фиксируют удалённый и переименованный софт</div>
           </div>
           <div class="ds-chevron"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div>
         </div>
@@ -3422,17 +3435,27 @@
             <div class="ds-part">
               <div class="ds-tag ds-tag-steps">ExecutedProgramsList</div>
               <ol class="ds-steps">
-                <li>Запустить утилиту, просмотреть весь список</li>
-                <li>Ориентироваться по дате и пути файла</li>
+                <li>Запустить утилиту от <strong>администратора</strong></li>
+                <li>Отсортировать по <strong>Last Execution Time</strong> (самые свежие вверху)</li>
+                <li>Искать <code>.exe</code> с рандомными именами или именами из сигнатур в колонке <strong>File Path</strong></li>
+                <li>Обратить внимание на пути <code>%temp%</code>, <code>AppData</code>, <code>Downloads</code> — подозрительно, если программа жила там</li>
+                <li>Правый клик на подозрительную запись → <strong>Properties</strong> → смотреть Company / Product name</li>
               </ol>
+              <div class="ds-tip"><strong>Ключевой момент:</strong> если запись есть, но файла уже нет на диске — программа была запущена и удалена. Это само по себе подозрительно.</div>
             </div>
             <div class="ds-part">
-              <div class="ds-tag ds-tag-steps">BAMParser / Cached Programs</div>
+              <div class="ds-tag ds-tag-steps">BAMParser / Cached Programs (BAM)</div>
               <ol class="ds-steps">
-                <li>Нажать иконку <strong>«глаз»</strong> для показа скрытых записей</li>
-                <li>BAM хранится в реестре — его сложнее очистить, чем prefetch</li>
-                <li>Искать программы которых нет на диске, но они есть в BAM</li>
+                <li>Запустить, нажать иконку <strong>«глаз»</strong> для отображения скрытых записей</li>
+                <li>Сортировать по <strong>Last Run</strong></li>
+                <li>BAM (Background Activity Moderator) хранится в реестре — <strong>сложнее очистить</strong>, чем prefetch и Executed Programs</li>
+                <li>Искать записи с путями из <code>%temp%</code> / <code>AppData\Roaming</code> / нестандартных папок</li>
+                <li>Если запись есть в BAM, но отсутствует в prefetch и Executed — значит, следы <strong>частично подчищены</strong></li>
               </ol>
+              <div class="ds-ban">
+                <div class="ds-ban-lbl">❌ Критерий бана</div>
+                В BAM или ExecutedPrograms есть запись с именем из сигнатур, или <strong>.exe из %temp%</strong> запускался незадолго до игры, и файла уже нет на диске.
+              </div>
             </div>
           </div>
         </div>
@@ -3532,7 +3555,7 @@
               </ol>
             </div>
             <div class="ds-part">
-              <div class="ds-tag">Что подозрительно</div>
+              <div class="ds-tag">Что подозрительно?</div>
               <ul class="ds-list">
                 <li>Пути с именами читов, удалённые за <strong>последний месяц</strong></li>
                 <li><code>AppData\Roaming\[рандом]</code> или <code>AppData\Local\[рандом]</code></li>
@@ -3572,7 +3595,7 @@
                 <li>Загрузка <code>.exe</code> / <code>.zip</code> / <code>.rar</code> с сайтов из сигнатуры</li>
                 <li>Файлы с именами читов или инжекторов</li>
               </ul>
-              <div class="ds-tip">Сопоставить URL загрузок с данными из памяти браузера (Шаг 2) — перекрёстное подтверждение усиливает доказательную базу.</div>
+              <div class="ds-tip"><strong>Совет:</strong> если тот же домен уже попался в памяти браузера на Шаге 2 — это двойное подтверждение. Два независимых источника = гораздо более весомо при выдаче бана.</div>
             </div>
           </div>
         </div>
