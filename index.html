@@ -1794,6 +1794,333 @@
     .log-stats-row { grid-template-columns: repeat(3,1fr); gap: 6px; }
     .log-stat-val { font-size: 1.5rem; }
   }
+
+  /* ══ GUIDE TABS ══ */
+  .guide-tabs-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin: 28px auto 0;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+    width: fit-content;
+  }
+  .guide-tab-btn {
+    padding: 9px 32px;
+    border-radius: 7px;
+    border: none;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.03em;
+    background: transparent;
+    color: var(--muted);
+  }
+  .guide-tab-btn.active {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  .guide-tab-btn:not(.active):hover {
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+  }
+  .guide-tab-content { display: none; }
+  .guide-tab-content.active { display: block; }
+
+  /* ══ VIDEO SECTION ══ */
+  .guide-video-section { margin-bottom: 36px; }
+  /* ══ YT PREVIEW ══ */
+  .yt-preview {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 16px;
+    background: #000;
+    transition: box-shadow 0.3s, transform 0.3s;
+    aspect-ratio: 16/9;
+  }
+  .yt-preview:hover {
+    box-shadow: 0 0 40px rgba(201,26,184,0.25), 0 12px 48px rgba(0,0,0,0.6);
+    transform: translateY(-2px);
+  }
+  .yt-thumb {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0.85;
+  }
+  .yt-preview:hover .yt-thumb { transform: scale(1.03); opacity: 0.7; }
+  .yt-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    transition: background 0.3s;
+  }
+  .yt-preview:hover .yt-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+  }
+  .yt-play-ring {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: rgba(201,26,184,0.9);
+    border: 2px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 40px rgba(201,26,184,0.6), 0 4px 16px rgba(0,0,0,0.5);
+    transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    flex-shrink: 0;
+  }
+  .yt-preview:hover .yt-play-ring {
+    transform: scale(1.12);
+    box-shadow: 0 0 60px rgba(201,26,184,0.8), 0 6px 20px rgba(0,0,0,0.5);
+    background: var(--accent3);
+  }
+  .yt-overlay-meta {
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+  }
+  .yt-overlay-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    color: #fff;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .yt-overlay-sub {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .guide-block-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .guide-block-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201,26,184,0.3), transparent);
+  }
+  .guide-video-frame {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    margin-bottom: 16px;
+  }
+  .guide-video-frame iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+    border-radius: 12px;
+  }
+  .guide-resource-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .guide-resource-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 22px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 9px;
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    transition: all 0.25s;
+  }
+  .guide-resource-btn:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(201,26,184,0.3);
+    color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  /* ══ DETAILED STEP CARDS ══ */
+  .det-step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    animation: fadeUp 0.4s ease both;
+  }
+  .det-step-hdr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.12);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .det-step-hdr:hover { background: rgba(255,255,255,0.02); }
+  .det-step-num {
+    min-width: 28px; height: 28px;
+    border-radius: 6px;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700; font-size: 0.88rem; color: #fff;
+    box-shadow: 0 0 12px var(--accent-glow);
+    flex-shrink: 0;
+  }
+  .det-step-ico { font-size: 1.1rem; flex-shrink: 0; }
+  .det-step-info { flex: 1; }
+  .det-step-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--white); letter-spacing: 0.02em; margin-bottom: 1px;
+  }
+  .det-step-sub { font-size: 0.74rem; color: var(--muted); }
+  .det-step-arr {
+    font-size: 0.62rem; color: var(--muted);
+    transition: transform 0.3s ease, color 0.2s;
+  }
+  .det-step.open .det-step-arr { transform: rotate(180deg); color: var(--accent); }
+  .det-step-body {
+    max-height: 0; overflow: hidden;
+    padding: 0 20px;
+    font-size: 0.83rem; color: var(--muted); line-height: 1.85;
+    transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1), padding 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  .det-step.open .det-step-body {
+    max-height: 3000px;
+    padding: 18px 20px 20px;
+    opacity: 1;
+  }
+  .det-section { margin-bottom: 16px; }
+  .det-section:last-child { margin-bottom: 0; }
+  .det-section-lbl {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.64rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .det-list { list-style: none; padding: 0; margin: 0; }
+  .det-list li {
+    display: flex; gap: 8px; align-items: baseline;
+    margin-bottom: 7px; font-size: 0.83rem;
+    color: var(--muted); line-height: 1.7;
+  }
+  .det-list li::before {
+    content: '›'; color: var(--accent);
+    font-size: 1rem; flex-shrink: 0; line-height: 1.5;
+  }
+  .det-list li strong { color: var(--text); }
+  .det-list li code {
+    color: var(--accent);
+    background: rgba(201,26,184,0.08);
+    border: 1px solid rgba(201,26,184,0.18);
+    padding: 1px 6px; border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82em; white-space: nowrap;
+  }
+  .num-steps { list-style: none; padding: 0; margin: 0; }
+  .num-steps li {
+    display: flex; gap: 10px; align-items: baseline;
+    margin-bottom: 9px;
+    font-size: 0.83rem; color: var(--muted); line-height: 1.7;
+  }
+  .num-steps li .sn {
+    color: var(--accent);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700; font-size: 0.78rem;
+    min-width: 16px; text-align: right; flex-shrink: 0;
+  }
+  .num-steps li strong { color: var(--text); }
+  .num-steps li code {
+    color: var(--accent);
+    background: rgba(201,26,184,0.08);
+    border: 1px solid rgba(201,26,184,0.18);
+    padding: 1px 6px; border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82em; white-space: nowrap;
+  }
+  .ban-box {
+    background: rgba(255,40,80,0.05);
+    border: 1px solid rgba(255,40,80,0.2);
+    border-left: 3px solid #ff4466;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.82rem; color: var(--muted); line-height: 1.8;
+    margin-top: 12px;
+  }
+  .ban-box-lbl {
+    color: #ff4466;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700; font-size: 0.67rem;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 5px;
+  }
+  .ban-box strong { color: var(--text); }
+  .tip-box {
+    background: rgba(201,26,184,0.04);
+    border: 1px solid rgba(201,26,184,0.12);
+    border-left: 2px solid rgba(201,26,184,0.5);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.82rem; color: var(--muted); line-height: 1.8;
+    margin-top: 12px;
+  }
+  .tip-box strong { color: var(--text); }
+  .det-arrow-chain { display: inline; color: var(--muted); }
+  .det-arrow-chain .snode {
+    display: inline-block;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px; padding: 1px 8px;
+    font-size: 0.82rem; color: var(--text);
+    font-weight: 600; white-space: nowrap;
+  }
+  .det-arrow-chain .arr { color: var(--accent); margin: 0 3px; font-size: 0.8rem; }
+
 </style>
 </head>
 <body>
@@ -2144,17 +2471,8 @@
         <div class="sig-code">doomxtf.com|axios-macro.com|midnight.im|xone.fun|blast.hk|yougame.biz|jestkii|wh-satano|cheatcsgo|interium|r8cheats|ezcheats|exloader|cs-elect.ru|extrimhack|neverlose.cc|gamesense|legendware|nixware|phoenix-hack|rf-cheats|anyx.gg|hackvshack.net|ezyhack|unknowncheats|cheater.ninja|insanitycheats.com|cheater.fun|100cheats.ru|undetek.com|cs-elect.ru|cheater.world|zelenka.guru/tags/cs2-cheat|procheats|hells-hack.com|clickhack.ru|procheat.pro|cheatermad.com|420cheats.com|cs2-cheat|wh-satano.ru|up-game.pro|millex.xyz|boohack.ru|procheat.pro|elitehacks.ru|cheatcsgo.ru|box-cheat.ru|novamacro|predator.systems|mvploader|securecheats|darkaim|invision.gg|elitepvpers.com|privatecheatz|cosmocheats|skycheats.com|en1gma.tech|lunocs2.ru|abyss.gg|ezcs.ru|kitchenhack.ru|ezyhack.ru|extrimhack.ru|dhjcheats.com|aimcop.ru|novamacro.xyz|promacro.ru|promacro.store|botmek.ru|topmacro.ru|ggmacro.ru|aimstar|myhacks.store|interium.ooo|nixware.cc|arayas-cheats.com|x-cheats.com|r8cheats.guru|gamebreaker.ru|cheatside.ru|shadowcheat.pro|h4ck.shop|select-place.ru|oplata.info|Spurdo.me|Chieftain</div>
       </div>
 
-      <!-- ══ ШАГ 3: Steam Memory Strings ══ -->
-      <div class="sig-step-label">📌 Шаг 3 — Steam · Memory → Strings (значение 5, только Image + Mapped, Filter → contains)</div>
-      <div class="sig-card">
-        <h3>Steam — Memory Strings: имена чит-клиентов</h3>
-        <div class="sig-desc">Открыть <strong>steam.exe → Properties → Memory → Options → Strings</strong>. Значение <strong>5</strong>. ⚠️ Снять все галки, оставить <strong>ТОЛЬКО Image + Mapped</strong>. Режим <strong>Filter → contains</strong>. Ищем строки известных клиентов в памяти Steam.</div>
-        <button class="copy-btn" onclick="copyText(this, 'Nonagon | Sharkhack | Memesense | Airflow | Passathook | Necrum | Neoxa7 | winner | Victoria | Weave | Aimware | Plague | Undetek | Senakys | Vanity | zrk | orbit | naim | skechware | aimstar | internal | simple | Axion | Nix | Midnight')">Копировать</button>
-        <div class="sig-code">Nonagon | Sharkhack | Memesense | Airflow | Passathook | Necrum | Neoxa7 | winner | Victoria | Weave | Aimware | Plague | Undetek | Senakys | Vanity | zrk | orbit | naim | skechware | aimstar | internal | simple | Axion | Nix | Midnight</div>
-      </div>
-
-      <!-- ══ ШАГ 4: Everything — Запрос 1 ══ -->
-      <div class="sig-step-label">📌 Шаг 4 — Everything · Запрос 1: Поиск по точным размерам файлов</div>
+      <!-- ══ ШАГ 3: Everything — Запрос 1 ══ -->
+      <div class="sig-step-label">📌 Шаг 3 — Everything · Запрос 1: Поиск по точным размерам файлов</div>
       <div class="sig-card">
         <h3>Everything — Запрос 1: точные размеры</h3>
         <div class="sig-desc">Вставить в строку поиска Everything. Ищем файлы с точными размерами, характерными для известных чит-лоадеров. Совпадение — повод для детальной проверки файла.</div>
@@ -2162,8 +2480,8 @@
         <div class="sig-code">size:20051kb | size:15110kb | size:13030kb | size:13485kb | size:17487kb | size:4311kb | size:16809kb | size:15090kb</div>
       </div>
 
-      <!-- ══ ШАГ 4: Everything — Запрос 2 ══ -->
-      <div class="sig-step-label">📌 Шаг 4 — Everything · Запрос 2: Поиск по названиям читов и макросов</div>
+      <!-- ══ ШАГ 3: Everything — Запрос 2 ══ -->
+      <div class="sig-step-label">📌 Шаг 3 — Everything · Запрос 2: Поиск по названиям читов и макросов</div>
       <div class="sig-card">
         <h3>Everything — Запрос 2: названия читов / макросов</h3>
         <div class="sig-desc">Поиск по именам известного запрещённого ПО: чит-клиенты, инжекторы, макросы, конфиги. Находит как активные, так и частично удалённые файлы.</div>
@@ -2171,8 +2489,8 @@
         <div class="sig-code">exloader | com.swiftsoft | xone | interium | skinchanger | extrimhack | nix | memesense | mvploader | sharkhack | exhack | neverkernel | vredux | mason | predator | aquila | luno | fecurity | cartel | aimstar | tkazer | naim | pellix | pussycat | axios | onemacro | softhub | proext | sapphire | interwebz | plague | vapehook | smurfwrecker | iniuria | yeahnot | legendware | hauntedproject | phoenixhack | onebyteradar | reborn | onebyte | osiris | ev0lve | ghostware | dexterion | basicmultihack | pudra | iCheat | sneakys | krazyhack | muhprime | drcheats | rootcheat | aeonix | zedt.pw | devcore | legifard | katebot | imxnoobx | w1nner | ekknod | neoxahack | warware | weave | aimmy | paradise | xenon | easysp | en1gma | Injector | .ahk | macros | bhop | bunnyhop | espd2x | avira | pphud | primordial | nonagon | legit | hvh | aimbot | s1mple | semirage | cheat | cs2.glow | invision | undetek | spurdo | webradar | valthrun</div>
       </div>
 
-      <!-- ══ ШАГ 4: Everything — Запрос 3 ══ -->
-      <div class="sig-step-label">📌 Шаг 4 — Everything · Запрос 3: Остаточные файлы после удаления чита</div>
+      <!-- ══ ШАГ 3: Everything — Запрос 3 ══ -->
+      <div class="sig-step-label">📌 Шаг 3 — Everything · Запрос 3: Остаточные файлы после удаления чита</div>
       <div class="sig-card">
         <h3>Everything — Запрос 3: остаточные файлы</h3>
         <div class="sig-desc">Ищем специфические файлы, которые остаются на диске после удаления популярных читов (конфиги, логи, ресурсы). Наличие — прямой детект.</div>
@@ -2180,8 +2498,8 @@
         <div class="sig-code">token.ms | schinese.bin | russian.bin | esp-icons.ttf | message-bus.bin | nl.log | nl_cs2.log</div>
       </div>
 
-      <!-- ══ ШАГ 4: Everything — Запрос 4 (ТЕСТОВЫЙ, UTF8/16) ══ -->
-      <div class="sig-step-label">📌 Шаг 4 — Everything · Запрос 4: Глубокий поиск по содержимому файлов (UTF8/16) — ТЕСТОВЫЙ</div>
+      <!-- ══ ШАГ 3: Everything — Запрос 4 (ТЕСТОВЫЙ, UTF8/16) ══ -->
+      <div class="sig-step-label">📌 Шаг 3 — Everything · Запрос 4: Глубокий поиск по содержимому файлов (UTF8/16) — ТЕСТОВЫЙ</div>
       <div class="sig-card" style="border-left-color: #facc15;">
         <h3>Everything — Запрос 4: содержимое .exe по внутренним строкам</h3>
         <div class="sig-desc" style="margin-bottom:16px">
@@ -2211,8 +2529,8 @@
         <div class="sig-code">&lt;&lt;ext:exe size:9mb-15mb utf8content:"Gentee Launcher"&gt;|&lt;ext:exe size:9mb-16mb utf8content:"X PROGRAMM LTD1"&gt;|&lt;ext:exe size:16mb-24mb utf8content:"7+InZ[^0"&gt;|&lt;ext:exe size:10mb-24mb utf8content:"t$PfD)t$PL"&gt;|&lt;ext:exe size:4mb-10mb utf8content:"KDMapper"&gt;|&lt;ext:exe size:0.3mb-3mb utf8content:"DragonBurn"&gt;|&lt;ext:exe size:2mb-8mb utf8content:"D:/Projects/touchskins"&gt;|&lt;ext:exe size:43mb-60mb utf8content:"vac_module_ok"&gt;|&lt;ext:exe size:600mb-700mb utf8content:"SharkHack"&gt;|&lt;ext:exe size:20mb-24mb utf8content:"l|rlK!tT1p"&gt;|&lt;ext:exe size:15mb-24mb utf8content:"MIDNIGHTLoader"&gt;|&lt;ext:exe size:10mb-16mb utf8content:"&amp;Lp6U&amp;XM}3ZQ*^[Hp)"&gt;|&lt;ext:exe size:2mb-8mb utf8content:"j_M6:F\"&gt;|&lt;ext:exe size:100kb-400kb utf16content:"swiftsoft"&gt;|&lt;ext:exe size:20mb-24mb utf8content:"exloader"&gt;|&lt;ext:exe size:13mb-23mb utf8content:"ZI&gt;vZ@y\#O%~"&gt;|&lt;ext:exe size:200kb-400kb utf16content:"com.mvploader"&gt;|&lt;ext:exe size:3mb-7mb utf8content:"Wzo8f9:GPd_C["&gt;&gt;</div>
       </div>
 
-      <!-- ══ ШАГ 4: Everything — Запрос 5 ══ -->
-      <div class="sig-step-label">📌 Шаг 4 — Everything · Запрос 5: Midnight / Xone / Nixware / Spurdo (по манифесту)</div>
+      <!-- ══ ШАГ 3: Everything — Запрос 5 ══ -->
+      <div class="sig-step-label">📌 Шаг 3 — Everything · Запрос 5: Midnight / Xone / Nixware / Spurdo (по манифесту)</div>
       <div class="sig-card">
         <h3>Everything — Запрос 5: Midnight, Xone, Nixware, Spurdo</h3>
         <div class="sig-desc">Обнаружение конкретных клиентов по сигнатуре XML-манифеста внутри .exe. Файл попадает в выдачу по размеру и наличию строки манифеста сборки.</div>
@@ -2220,8 +2538,8 @@
         <div class="sig-code">size:10mb-24mb ext:exe utf8content:"xmlns='urn:schemas-microsoft-com:asm.v1' manifestVersion='1.0'>"</div>
       </div>
 
-      <!-- ══ ШАГ 4: Everything — Запрос 6 ══ -->
-      <div class="sig-step-label">📌 Шаг 4 — Everything · Запрос 6: Memesense (по манифесту requestedExecutionLevel)</div>
+      <!-- ══ ШАГ 3: Everything — Запрос 6 ══ -->
+      <div class="sig-step-label">📌 Шаг 3 — Everything · Запрос 6: Memesense (по манифесту requestedExecutionLevel)</div>
       <div class="sig-card">
         <h3>Everything — Запрос 6: Memesense</h3>
         <div class="sig-desc">Обнаружение Memesense по характерной строке запроса уровня привилегий в манифесте .exe файла.</div>
@@ -2229,8 +2547,8 @@
         <div class="sig-code">size:10mb-20mb ext:exe utf8content:"&lt;ms_asmv1:requestedExecutionLeve"</div>
       </div>
 
-      <!-- ══ ШАГ 4: Everything — Запрос 7 ══ -->
-      <div class="sig-step-label">📌 Шаг 4 — Everything · Запрос 7: Fatality (по уровню привилегий requireAdministrator)</div>
+      <!-- ══ ШАГ 3: Everything — Запрос 7 ══ -->
+      <div class="sig-step-label">📌 Шаг 3 — Everything · Запрос 7: Fatality (по уровню привилегий requireAdministrator)</div>
       <div class="sig-card">
         <h3>Everything — Запрос 7: Fatality</h3>
         <div class="sig-desc">Поиск по размеру, схеме сборки asm.v1 и требованию прав администратора (requireAdministrator) в манифесте. Характерная комбинация для Fatality.</div>
@@ -2238,8 +2556,8 @@
         <div class="sig-code">ext:exe size:3mb-7mb utf8content:"urn:schemas-microsoft-com:asm.v1" "requestedExecutionLevel" "requireAdministrator" "&lt;/supportedOS&gt;"</div>
       </div>
 
-      <!-- ══ ШАГ 4: Everything — Запрос 8 ══ -->
-      <div class="sig-step-label">📌 Шаг 4 — Everything · Запрос 8: Midnight, Xone, Nixware, Spurdo (по уникальной строке бинарника)</div>
+      <!-- ══ ШАГ 3: Everything — Запрос 8 ══ -->
+      <div class="sig-step-label">📌 Шаг 3 — Everything · Запрос 8: Midnight, Xone, Nixware, Spurdo (по уникальной строке бинарника)</div>
       <div class="sig-card">
         <h3>Everything — Запрос 8: Midnight / Xone / Nixware / Spurdo</h3>
         <div class="sig-desc">Альтернативный поиск тех же клиентов по уникальной строке <code style="color:#8888aa">Wzo8f9:GPd_C[</code> непосредственно в теле .exe файла.</div>
@@ -2262,9 +2580,16 @@
     <p>Пошаговая инструкция по использованию программ для анализа системы на наличие запрещённого ПО</p>
   </div>
 
+  <!-- Tab switcher -->
+  <div class="guide-tabs-wrap" id="guide-tabs">
+    <button class="guide-tab-btn active" onclick="switchGuideTab('guide-quick', this)">Краткое руководство</button>
+    <button class="guide-tab-btn" onclick="switchGuideTab('guide-detailed', this)">Подробное руководство</button>
+  </div>
+
   <div class="guide-section">
+    <div id="guide-quick" class="guide-tab-content active">
     <div class="guide-progress">
-      <span>13</span> шагов проверки · By glazki
+      <span>12</span> шагов проверки · By glazki
     </div>
 
     <!-- 1. ПЕРВИЧНЫЙ ОСМОТР -->
@@ -2324,33 +2649,10 @@
       </div>
     </div>
 
-    <!-- 3. STEAM MEMORY STRINGS -->
+    <!-- 3. EVERYTHING -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
         <span class="acc-num">3</span>
-        <span class="acc-title">Steam → Memory → Strings (скрытый лог)</span>
-        <span class="acc-arrow">▼</span>
-      </div>
-      <div class="accordion-body">
-        <div class="step" data-n="1">Открыть
-          <span class="arrow-chain">
-            <span class="step-node">steam.exe</span>
-            <span class="arr">→</span><span class="step-node">Properties</span>
-            <span class="arr">→</span><span class="step-node">Memory</span>
-            <span class="arr">→</span><span class="step-node">Options</span>
-            <span class="arr">→</span><span class="step-node">Strings</span>
-          </span>
-        </div>
-        <div class="step" data-n="2">Установить значение <code>5</code></div>
-        <div class="step" data-n="3">⚠️ Снять все галки, оставить <strong>ТОЛЬКО</strong> <code>Image</code> + <code>Mapped</code></div>
-        <div class="step" data-n="4">Режим <strong>Filter → contains</strong> · Сигнатура клиентов — на вкладке <strong>«Сигнатуры»</strong></div>
-      </div>
-    </div>
-
-    <!-- 4. EVERYTHING -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">4</span>
         <span class="acc-title">Everything — Глубокий поиск файлов</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2369,10 +2671,10 @@
       </div>
     </div>
 
-    <!-- 5. USBDEVIEW -->
+    <!-- 4. USBDEVIEW -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">5</span>
+        <span class="acc-num">4</span>
         <span class="acc-title">USBDeview — История USB-устройств</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2384,10 +2686,10 @@
       </div>
     </div>
 
-    <!-- 6. СЕТЬ -->
+    <!-- 5. СЕТЬ -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">6</span>
+        <span class="acc-num">5</span>
         <span class="acc-title">Использование данных — Сеть</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2399,10 +2701,10 @@
       </div>
     </div>
 
-    <!-- 7. LAST ACTIVITY VIEW -->
+    <!-- 6. LAST ACTIVITY VIEW -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">7</span>
+        <span class="acc-num">6</span>
         <span class="acc-title">Last Activity View — Лог действий</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2414,10 +2716,10 @@
       </div>
     </div>
 
-    <!-- 8. WINPREFETCHVIEW -->
+    <!-- 7. WINPREFETCHVIEW -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">8</span>
+        <span class="acc-num">7</span>
         <span class="acc-title">WinPrefetchView — Кэш запуска</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2429,10 +2731,10 @@
       </div>
     </div>
 
-    <!-- 9. EXECUTED / CACHED PROGRAMS -->
+    <!-- 8. EXECUTED / CACHED PROGRAMS -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">9</span>
+        <span class="acc-num">8</span>
         <span class="acc-title">Executed Programs / Cached Programs</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2444,10 +2746,10 @@
       </div>
     </div>
 
-    <!-- 10. JOURNAL TRACE -->
+    <!-- 9. JOURNAL TRACE -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">10</span>
+        <span class="acc-num">9</span>
         <span class="acc-title">Journal Trace — Проверка очистки Prefetch</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2468,10 +2770,10 @@
       </div>
     </div>
 
-    <!-- 11. PREVIOUS FILES RECOVERY -->
+    <!-- 10. PREVIOUS FILES RECOVERY -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">11</span>
+        <span class="acc-num">10</span>
         <span class="acc-title">Previous Files Recovery — Восстановление</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2483,10 +2785,10 @@
       </div>
     </div>
 
-    <!-- 12. SHELLBAG ANALYZER -->
+    <!-- 11. SHELLBAG ANALYZER -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">12</span>
+        <span class="acc-num">11</span>
         <span class="acc-title">ShellBag Analyzer — Удалённые папки</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2497,10 +2799,10 @@
       </div>
     </div>
 
-    <!-- 13. BROWSER DOWNLOADS VIEW -->
+    <!-- 12. BROWSER DOWNLOADS VIEW -->
     <div class="accordion">
       <div class="accordion-header" onclick="toggleAcc(this)">
-        <span class="acc-num">13</span>
+        <span class="acc-num">12</span>
         <span class="acc-title">BrowserDownloadsView — История браузера</span>
         <span class="acc-arrow">▼</span>
       </div>
@@ -2512,9 +2814,478 @@
         </ul>
       </div>
     </div>
+    </div>
 
+    <div id="guide-detailed" class="guide-tab-content">
+
+      <div class="guide-video-section">
+        <div class="guide-block-label">Видео-руководство</div>
+        <div class="yt-preview" onclick="window.open('https://youtu.be/T-7b12Kbk84','_blank','noopener')">
+          <img class="yt-thumb"
+               src="https://img.youtube.com/vi/T-7b12Kbk84/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/T-7b12Kbk84/hqdefault.jpg'"
+               alt="Видео-руководство по проверке">
+          <div class="yt-overlay">
+            <div class="yt-play-ring">
+              <svg viewBox="0 0 24 24" fill="white" width="36" height="36"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="yt-overlay-meta">
+              <div class="yt-overlay-title">Видео-руководство по проверке на читы</div>
+              <div class="yt-overlay-sub">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5S4.5 3.5 2.6 4.1A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8z"/></svg>
+                Открыть на YouTube
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="guide-resource-row">
+          <a class="guide-resource-btn" href="https://youtu.be/T-7b12Kbk84" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5S4.5 3.5 2.6 4.1A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+            YouTube — Смотреть гайд
+          </a>
+          <a class="guide-resource-btn" href="https://disk.yandex.ru/i/JkFRT7jOg51uUg" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v13M7 12l5 5 5-5"/><path d="M4 19h16"/></svg>
+            Яндекс Диск — Скачать материалы
+          </a>
+        </div>
+      </div>
+
+      <div class="guide-block-label">Пошаговый разбор каждого шага</div>
+
+      <!-- STEP 1 -->
+      <div class="det-step open">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">1</div>
+          <div class="det-step-ico">🔍</div>
+          <div class="det-step-info">
+            <div class="det-step-title">Первичный осмотр</div>
+            <div class="det-step-sub">Оцениваем профиль игрока до начала проверки</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Что проверяем</div>
+            <ul class="det-list">
+              <li><strong>Faceit:</strong> открыть <code>faceit.com/en/search</code>, ввести никнейм. Смотреть уровень, K/D, историю матчей. Несоответствие уровня и поведения — красный флаг.</li>
+              <li><strong>Steam-профиль:</strong> часы в CS2 (подозрительно мало при высоком уровне Faceit), медали, дата создания аккаунта, приватность.</li>
+              <li><strong>История банов:</strong> проверить <a href="https://cs2bgd31.ru/check/" target="_blank" style="color:var(--accent)">cs2bgd31.ru/check/</a> — были ли предыдущие баны на проекте.</li>
+            </ul>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Особые случаи</div>
+            <ul class="det-list">
+              <li><strong>ПК-клуб:</strong> попросить игрока записать кружок с окружением (должны быть видны другие компьютеры и люди). Если скачать программы невозможно и меню скрыто — отпустить.</li>
+              <li>Панель задач в полноэкранном режиме: <code>Win + D</code> выходит на рабочий стол.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">2</div>
+          <div class="det-step-ico">🖥</div>
+          <div class="det-step-info">
+            <div class="det-step-title">System Informer — Анализ процессов</div>
+            <div class="det-step-sub">Проверяем запущенные процессы, команды запуска Steam и память браузеров</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Подготовка</div>
+            <ul class="det-list">
+              <li>Запустить System Informer <strong>от имени администратора</strong> — без прав часть информации недоступна.</li>
+              <li>Убедиться, что во вкладке процессов виден <code>cs2.exe</code>.</li>
+            </ul>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Проверка процессов</div>
+            <ul class="det-list">
+              <li>Если <code>cs2.exe</code> подсвечен <strong>оранжевым</strong> — игра запущена от администратора. Это подозрительно (так делают некоторые читы, чтобы получить привилегии).</li>
+              <li>Смотрите на незнакомые процессы с подозрительными именами из случайных символов или в папке <code>%temp%</code>.</li>
+            </ul>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Командная строка Steam</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>ПКМ по процессу <code>steam.exe</code> в списке</li>
+              <li><span class="sn">2</span>Выбрать <span class="det-arrow-chain"><span class="snode">Properties</span><span class="arr">→</span><span class="snode">General</span></span></li>
+              <li><span class="sn">3</span>Нажать на <strong>иконку лупы</strong> рядом с полем <code>Command line</code></li>
+              <li><span class="sn">4</span>Проверить наличие флагов <code>-sandbox</code> или <code>-applauncher</code></li>
+            </ol>
+            <div class="ban-box">
+              <div class="ban-box-lbl">❌ Критерий бана</div>
+              Если в командной строке Steam присутствует <strong>-sandbox</strong> или <strong>-applauncher</strong> — это верный признак изолированного запуска, используемого для сокрытия чит-активности.
+            </div>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Память браузеров (проверка истории посещений)</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>ПКМ по процессу браузера (<code>chrome.exe</code>, <code>msedge.exe</code>, <code>firefox.exe</code>)</li>
+              <li><span class="sn">2</span><span class="det-arrow-chain"><span class="snode">Properties</span><span class="arr">→</span><span class="snode">Memory</span><span class="arr">→</span><span class="snode">Options</span><span class="arr">→</span><span class="snode">Strings</span></span></li>
+              <li><span class="sn">3</span>В поле значения поставить <strong>6</strong></li>
+              <li><span class="sn">4</span>Убедиться, что <strong>все галочки включены</strong></li>
+              <li><span class="sn">5</span>Режим фильтра: <strong>Filter / regex</strong></li>
+              <li><span class="sn">6</span>Вставить сигнатуру из вкладки <strong>«Сигнатуры» → Шаг 2</strong> и нажать Enter</li>
+            </ol>
+            <div class="tip-box">
+              <strong>Совет:</strong> если браузеров несколько — проверять каждый. Браузер должен быть открыт и активен в момент проверки памяти.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">3</div>
+          <div class="det-step-ico">🔎</div>
+          <div class="det-step-info">
+            <div class="det-step-title">Everything — Глубокий поиск файлов</div>
+            <div class="det-step-sub">8 запросов для поиска читов, макросов и их остатков</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Критически важная подготовка</div>
+            <ul class="det-list">
+              <li>Запустить Everything <strong>от имени администратора</strong>.</li>
+              <li>Открыть <span class="det-arrow-chain"><span class="snode">Tools</span><span class="arr">→</span><span class="snode">Options</span><span class="arr">→</span><span class="snode">Exclude</span></span> — список должен быть <strong>абсолютно пустым</strong>. Если есть записи — читер специально скрыл папки от поиска.</li>
+              <li>Для запросов с <code>utf8content</code> / <code>utf16content</code> убедитесь, что индексация содержимого включена: <span class="det-arrow-chain"><span class="snode">Tools</span><span class="arr">→</span><span class="snode">Options</span><span class="arr">→</span><span class="snode">Indexes</span><span class="arr">→</span><span class="snode">Content</span></span>.</li>
+            </ul>
+            <div class="ban-box">
+              <div class="ban-box-lbl">❌ Критерий бана</div>
+              Непустой список <strong>Exclude</strong> — игрок скрыл папки от проверки.
+            </div>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Запросы — что ищем</div>
+            <ul class="det-list">
+              <li><strong>Запрос 1</strong> — точные размеры файлов, характерные для известных лоадеров. Совпадение = повод детально изучить файл.</li>
+              <li><strong>Запрос 2</strong> — имена читов, инжекторов, макросов и их конфигов. Находит файлы даже в архивах.</li>
+              <li><strong>Запрос 3</strong> — специфические артефакты: <code>token.ms</code>, <code>nl.log</code>, <code>esp-icons.ttf</code> и др. Наличие = прямой детект.</li>
+              <li><strong>Запрос 4</strong> — глубокий поиск по содержимому <code>.exe</code> файлов (UTF8/16). Находит читы, даже если они переименованы. <em>Может занять несколько минут.</em></li>
+              <li><strong>Запросы 5–8</strong> — обнаружение конкретных клиентов (Midnight, Xone, Nixware, Spurdo, Memesense, Fatality) по XML-манифесту внутри .exe.</li>
+            </ul>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Как работать с результатами</div>
+            <ul class="det-list">
+              <li>Клик на файл в результатах — открывает расположение. ПКМ → <code>Open path</code>.</li>
+              <li>Незнакомый .exe: ПКМ → <code>Properties</code> → вкладка <code>Details</code> — смотреть Company, Product name.</li>
+              <li>Попросить игрока объяснить наличие подозрительного файла. Убедительного объяснения нет — бан.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">4</div>
+          <div class="det-step-ico">💾</div>
+          <div class="det-step-info">
+            <div class="det-step-title">USBDeview — История USB-устройств</div>
+            <div class="det-step-sub">Выявляем флешки, отключённые перед проверкой</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Порядок проверки</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>Запустить USBDeview.</li>
+              <li><span class="sn">2</span>Отсортировать по столбцу <strong>Disconnected Time</strong> (по убыванию — самые свежие сверху).</li>
+              <li><span class="sn">3</span>Смотреть: было ли USB-устройство отключено прямо перед вызовом на проверку.</li>
+              <li><span class="sn">4</span>Если подозрительное устройство найдено — попросить игрока его предоставить.</li>
+            </ol>
+            <div class="ban-box">
+              <div class="ban-box-lbl">❌ Критерий бана</div>
+              USB-устройство отключено непосредственно перед проверкой, и <strong>игрок отказывается его вернуть</strong> или утверждает, что его нет.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">5</div>
+          <div class="det-step-ico">🌐</div>
+          <div class="det-step-info">
+            <div class="det-step-title">Использование данных — Сеть</div>
+            <div class="det-step-sub">Ищем подозрительные фоновые соединения</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Как проверить</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>Открыть <strong>Диспетчер задач</strong> (<code>Ctrl+Shift+Esc</code>)</li>
+              <li><span class="sn">2</span>Перейти на вкладку <strong>Производительность → Открыть монитор ресурсов</strong></li>
+              <li><span class="sn">3</span>Вкладка <strong>Сеть</strong> — смотреть колонку «Процессы с сетевой активностью»</li>
+              <li><span class="sn">4</span>Дополнительно: в System Informer столбец <code>Total bytes</code> — сортировать по активности</li>
+            </ol>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Что подозрительно</div>
+            <ul class="det-list">
+              <li>Неизвестный процесс с <strong>активным исходящим трафиком</strong> в момент игры.</li>
+              <li>Подключение к нестандартным IP/портам в процессах без понятного назначения.</li>
+              <li>Процесс в <code>%temp%</code> или <code>AppData</code> с сетевой активностью.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">6</div>
+          <div class="det-step-ico">🕐</div>
+          <div class="det-step-info">
+            <div class="det-step-title">Last Activity View — Лог действий</div>
+            <div class="det-step-sub">Временна́я шкала действий пользователя до запуска игры</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Порядок проверки</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>Запустить LastActivityView от администратора.</li>
+              <li><span class="sn">2</span>Отсортировать по столбцу <strong>Action Time</strong>.</li>
+              <li><span class="sn">3</span>Найти запись <code>cs2.exe</code> (запуск игры) и смотреть активность <strong>за 15–30 минут до</strong>.</li>
+              <li><span class="sn">4</span>Обратить внимание на открытые папки, запущенные программы, изменённые файлы.</li>
+            </ol>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Что искать</div>
+            <ul class="det-list">
+              <li>Открытие подозрительных <strong>папок/файлов</strong> перед игрой (названия содержат имена читов).</li>
+              <li>Запуск <strong>неизвестных .exe</strong> непосредственно перед cs2.exe.</li>
+              <li>Доступ к <code>%temp%</code>, <code>AppData\Roaming</code> с последующим запуском игры.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 7 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">7</div>
+          <div class="det-step-ico">⚡</div>
+          <div class="det-step-info">
+            <div class="det-step-title">WinPrefetchView — Кэш запуска программ</div>
+            <div class="det-step-sub">Prefetch-записи показывают все запущенные .exe, в том числе удалённые</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Порядок проверки</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>Запустить WinPrefetchView.</li>
+              <li><span class="sn">2</span>Отсортировать по <strong>Last Run Time</strong> (последний запуск).</li>
+              <li><span class="sn">3</span>Искать <code>.exe</code> с рандомными именами или именами из сигнатур читов.</li>
+              <li><span class="sn">4</span>Обратить внимание на директорию запуска — <code>%temp%</code>, <code>Downloads</code> = подозрительно.</li>
+            </ol>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Что подозрительно</div>
+            <ul class="det-list">
+              <li>Prefetch-записи для <strong>рандомно названных .exe</strong> (8–16 символов из букв/цифр).</li>
+              <li>Программы запущенные из <code>%temp%</code> или <code>AppData</code> незадолго до игры.</li>
+              <li>Известные имена читов в списке prefetch — даже если файл уже удалён.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 8 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">8</div>
+          <div class="det-step-ico">▶️</div>
+          <div class="det-step-info">
+            <div class="det-step-title">Executed Programs / Cached Programs</div>
+            <div class="det-step-sub">Находим удалённый софт в системных логах Windows</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">ExecutedProgramsList</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>Запустить утилиту.</li>
+              <li><span class="sn">2</span>Просмотреть список всех когда-либо запускавшихся программ.</li>
+              <li><span class="sn">3</span>Ориентироваться по дате последнего запуска и пути к файлу.</li>
+            </ol>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Cached Programs (BAMParser / RecentFilesView)</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>Запустить утилиту.</li>
+              <li><span class="sn">2</span>Нажать иконку <strong>«глаз»</strong> для отображения скрытых записей.</li>
+              <li><span class="sn">3</span>Искать программы, которых уже нет на диске, но они зафиксированы в BAM (Background Activity Moderator).</li>
+            </ol>
+            <div class="tip-box">
+              <strong>BAM</strong> хранит данные о запущенных программах независимо от prefetch и хранится в реестре — его сложнее почистить.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 9 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">9</div>
+          <div class="det-step-ico">📋</div>
+          <div class="det-step-info">
+            <div class="det-step-title">Journal Trace — Очистка Prefetch и NTFS-журнал</div>
+            <div class="det-step-sub">Проверяем ручное удаление следов через USN-журнал файловой системы</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Порядок проверки Prefetch</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span><span class="det-arrow-chain"><span class="snode">Drive</span><span class="arr">→</span><span class="snode">Select</span></span> — выбрать диск <code>C:</code></li>
+              <li><span class="sn">2</span><span class="det-arrow-chain"><span class="snode">Drive</span><span class="arr">→</span><span class="snode">Scan</span><span class="arr">→</span><span class="snode">Layout datagrid</span></span></li>
+              <li><span class="sn">3</span>В строке поиска ввести <code>.pf</code></li>
+              <li><span class="sn">4</span>Зафиксировать временной диапазон доступных prefetch-файлов</li>
+            </ol>
+            <div class="ban-box">
+              <div class="ban-box-lbl">❌ Критерий бана — ручная очистка Prefetch</div>
+              Если вы вызвали игрока, например, в <strong>19:00</strong>, а <code>.pf</code> файлы в журнале существуют только с 18:55 (старых нет вообще) — Prefetch был <strong>вручную удалён</strong> незадолго до проверки. Бан за сокрытие детектов.
+            </div>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">NTFS-журнал: поиск имён чит-файлов</div>
+            <ul class="det-list">
+              <li>После сканирования снять фильтр <code>.pf</code> и использовать <strong>поиск по именам</strong> из сигнатур (Запрос 2).</li>
+              <li>NTFS-журнал фиксирует создание, переименование и удаление файлов — даже если они уже стёрты.</li>
+              <li>Вставить лог JournalTrace в раздел <strong>«Проверка логов»</strong> для автоматического анализа.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 10 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">10</div>
+          <div class="det-step-ico">♻️</div>
+          <div class="det-step-info">
+            <div class="det-step-title">Previous Files Recovery — Восстановление удалённых файлов</div>
+            <div class="det-step-sub">Ищем удалённые читы в секторах диска</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Порядок проверки (Recuva)</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>Запустить Recuva, выбрать <strong>диск C:</strong>.</li>
+              <li><span class="sn">2</span>Сканировать в режиме <strong>«Углублённое сканирование»</strong>.</li>
+              <li><span class="sn">3</span>После сканирования отфильтровать по дате: <strong>последние 30 дней</strong>.</li>
+              <li><span class="sn">4</span>Особое внимание: папки <code>Downloads</code> (Загрузки) и <strong>Корзина</strong>.</li>
+              <li><span class="sn">5</span>Искать имена из сигнатур в списке удалённых файлов.</li>
+            </ol>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">На что обращать внимание</div>
+            <ul class="det-list">
+              <li>.exe файлы с именами читов, удалённые за <strong>последние 1–7 дней</strong>.</li>
+              <li>Файлы конфигурации (<code>.cfg</code>, <code>.json</code>, <code>.bin</code>) из известных чит-клиентов.</li>
+              <li>Зип-архивы (<code>.zip</code>, <code>.rar</code>) в папке Загрузки — могли содержать лоадер.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 11 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">11</div>
+          <div class="det-step-ico">🗂</div>
+          <div class="det-step-info">
+            <div class="det-step-title">ShellBag Analyzer — Удалённые папки</div>
+            <div class="det-step-sub">Реестр помнит о папках, которых уже нет на диске</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Что такое ShellBag</div>
+            <ul class="det-list">
+              <li>Windows записывает в реестр все папки, в которые пользователь заходил через Проводник — даже если папки уже удалены.</li>
+              <li>Это один из самых надёжных источников: его трудно очистить без специального ПО.</li>
+            </ul>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Порядок проверки</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>Нажать кнопку <strong>Анализ</strong>.</li>
+              <li><span class="sn">2</span>Переключить фильтр на <strong>«Показать все»</strong>, затем <strong>«Удалённые папки»</strong>.</li>
+              <li><span class="sn">3</span>Отсортировать по дате последнего обращения.</li>
+              <li><span class="sn">4</span>Искать пути к директориям с именами читов или рандомными папками в <code>AppData</code>.</li>
+            </ol>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Что подозрительно</div>
+            <ul class="det-list">
+              <li>Папки с названиями из сигнатур читов, удалённые за <strong>последний месяц</strong>.</li>
+              <li>Директории вида <code>AppData\Roaming\[рандомные буквы]</code> или <code>AppData\Local\[рандомные буквы]</code>.</li>
+              <li>Любые пути в <code>%temp%</code> с неизвестными именами.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 12 -->
+      <div class="det-step">
+        <div class="det-step-hdr" onclick="toggleDetStep(this)">
+          <div class="det-step-num">12</div>
+          <div class="det-step-ico">🌐</div>
+          <div class="det-step-info">
+            <div class="det-step-title">BrowserDownloadsView — История загрузок браузера</div>
+            <div class="det-step-sub">Анализ загрузок и посещений сайтов с читами</div>
+          </div>
+          <span class="det-step-arr">▼</span>
+        </div>
+        <div class="det-step-body">
+          <div class="det-section">
+            <div class="det-section-lbl">Порядок проверки</div>
+            <ol class="num-steps">
+              <li><span class="sn">1</span>Запустить BrowserDownloadsView — утилита автоматически подхватывает данные всех установленных браузеров.</li>
+              <li><span class="sn">2</span>Отсортировать по дате загрузки (<strong>самые свежие вверху</strong>).</li>
+              <li><span class="sn">3</span>Проверить столбец <strong>URL источника</strong> — есть ли в нём домены из сигнатуры (вкладка «Сигнатуры»).</li>
+              <li><span class="sn">4</span>Обратить внимание на имена скачанных файлов (колонка «Имя файла»).</li>
+            </ol>
+          </div>
+          <div class="det-section">
+            <div class="det-section-lbl">Что искать</div>
+            <ul class="det-list">
+              <li>Скачивание <strong>.exe, .zip, .rar</strong> с доменов из сигнатуры сайтов читов.</li>
+              <li>Загрузки с именами, совпадающими с именами читов или инжекторов.</li>
+              <li>Если загрузки очищены полностью — само по себе подозрительно совместно с другими уликами.</li>
+            </ul>
+            <div class="tip-box">
+              <strong>Совет:</strong> сопоставить URL загрузок с проверкой памяти браузера из Шага 2 — перекрёстное подтверждение усиливает доказательную базу.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-
   <div class="guide-cta">
     <button onclick="showPage('main', document.getElementById('nav-main'))">
       Перейти к программам →
@@ -3288,6 +4059,20 @@ function logToggleDB(){
   document.getElementById('logDbBody').classList.toggle('open',logDbOpen);
   document.getElementById('logDbArrow').style.transform=logDbOpen?'rotate(180deg)':'';
 }
+
+  function switchGuideTab(id, btn) {
+    document.querySelectorAll('#guide-tabs .guide-tab-btn').forEach(function(b){b.classList.remove('active');});
+    document.querySelectorAll('#guide-quick, #guide-detailed').forEach(function(el){el.classList.remove('active');});
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+  function toggleDetStep(hdr) {
+    var el = hdr.parentElement;
+    var isOpen = el.classList.contains('open');
+    document.querySelectorAll('.det-step.open').forEach(function(s){s.classList.remove('open');});
+    if (!isOpen) el.classList.add('open');
+  }
+
 </script>
 
 </body>
