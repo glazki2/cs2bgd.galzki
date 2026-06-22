@@ -2154,7 +2154,40 @@
   }
   .ds-yt-link:hover { color: var(--accent); }
 
-  /* Steps header label */
+  .ds-video-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .ds-authors {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--muted);
+  }
+  .ds-authors svg { opacity: 0.5; flex-shrink: 0; }
+  .ds-author-main {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--white);
+    letter-spacing: 0.04em;
+  }
+  .ds-author-sep {
+    font-size: 0.72rem;
+    color: var(--muted);
+    opacity: 0.5;
+  }
+  .ds-author-minor {
+    font-size: 0.72rem;
+    color: var(--muted);
+    opacity: 0.45;
+    letter-spacing: 0.03em;
+  }
+
   .ds-steps-label {
     font-family: 'Rajdhani', sans-serif;
     font-size: 0.67rem;
@@ -3107,10 +3140,18 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
         </div>
-        <a class="ds-yt-link" href="https://youtu.be/T-7b12Kbk84" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5S4.5 3.5 2.6 4.1A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-          Открыть на YouTube, если видео не загружается
-        </a>
+        <div class="ds-video-meta">
+          <a class="ds-yt-link" href="https://youtu.be/T-7b12Kbk84" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5S4.5 3.5 2.6 4.1A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+            Открыть на YouTube, если видео не загружается
+          </a>
+          <div class="ds-authors">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" width="13" height="13"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+            <span class="ds-author-main">Добрый</span>
+            <span class="ds-author-sep">&</span>
+            <span class="ds-author-minor">glazki</span>
+          </div>
+        </div>
       </div>
 
       <!-- STEPS HEADER -->
